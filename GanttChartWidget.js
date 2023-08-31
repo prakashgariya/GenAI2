@@ -2,18 +2,10 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
     <style>
-#chart {
-    border: 1px solid #000;
-    padding: 10px;
-    margin: 10px;
-    width: 100%; 
-    max-width: 95%; 
-    height: 500px;  
-    overflow: hidden; 
-    box-sizing: border-box;  
-}
     </style>
+     <div id="image-container"> <svg width="750" height="100">  </svg></div> 
     <div id="chart"></div>
+    <a href="https://www.linkedin.com/company/planifyit" target="_blank" class="follow-link">Follow us on Linkedin - Planifyit</a>
     `;
 
     class GanttChartWidget extends HTMLElement {
@@ -22,27 +14,13 @@
             console.log('Constructor called');
             this._shadowRoot = this.attachShadow({mode: 'open'});
             this._shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            this._props = {};
-            this.tasks = [];
 
-            // Load DHTMLX Gantt CSS
-            const dhtmlxGanttCSS = document.createElement('link');
-            dhtmlxGanttCSS.rel = 'stylesheet';
-            dhtmlxGanttCSS.href = 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css';
-            this._shadowRoot.appendChild(dhtmlxGanttCSS);
-
-            // Load DHTMLX Gantt
+            // Load Script
             const dhtmlxGanttScript = document.createElement('script');
             dhtmlxGanttScript.src = 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js';
             dhtmlxGanttScript.onload = () => {
                 this._dhtmlxGanttReady = true;
                 this._renderChart();
-            };
-
-            const dhtmlxGanttScript1 = document.createElement('script');
-            dhtmlxGanttScript1.src = 'https://code.jquery.com/jquery-3.5.1.min.js';
-            dhtmlxGanttScript1.onload = () => {
-                this._callCloudFunction();
             };
             this._shadowRoot.appendChild(dhtmlxGanttScript);
         }
@@ -154,38 +132,12 @@ _renderChart() {
     }
 }
 
-_callCloudFunction(){
-    let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoianhKcmRQRTNudmQwcm1Wbzk0bGZtZyIsIm5iZiI6MTY5MzQ3NDUwOSwiaWF0IjoxNjkzNDc0ODA5LCJleHAiOjE2OTM0Nzg0MDksImp0aSI6IjI0MWU4Mzc2ZGE2MThlZmQzOTk2MTI5OWE4M2NmNjNjZDNjOGM3MzkifQ.q6FwnZOwoKbUZN2X5Yv3esK4SnBoz8GBI-UjxyIwqLQJTYk_WpPoRvB-tf994orm4b_0mEEqTEHAxpRENNo0BVkAqSpe44MbpMo7SEq8J1eqUmIqdD9s5RsfxD9mx_mQneRRKfSD7GaBR4EdAIpatihLD5jO4UYcOcHQQWPOWgP3ilKtkU_D9K2ajOMqpsxe6TB0yXjrJUgiAiZObkUBtd7SBInMaeFZf47iYqxQgv84afXwYGWODNc0dNmfcH9IKHjJxHqqkGiR9vWDpUhw6t_R2wmYPmoq8TnmtIHyNJB9WaUK28CDjsPjUNQ-apWlVUaa-LcVRoSXLsQiZTN3rA";
-                $.ajax({
-                    url: "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger",
-                    type: "GET",
-                    crossDomain: true,
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + sToken );
-                    },
-                    crossDomain: true,
-                    error: function (err) {
-                        switch (err.status) {
-                            case "400":
-                                alert("bad request");
-                                break;
-                            case "401":
-                                alert("unauthorized");
-                                break;
-                            case "403":
-                                alert("forbidden");
-                                break;
-                            default:
-                                alert("Error occured");
-                                break;
-                        };
-                        window.location.href = 'https://deloitteconsulting.cloud.looker.com/embed/dashboards/2';
-                    },
-                    success: function () {
-                        window.location.href = 'https://deloitteconsulting.cloud.looker.com/embed/dashboards/2';
-                    }
-                })
-            }
+
+
+
+
+
     }
+
     customElements.define('gantt-chart-widget', GanttChartWidget);
 })();
