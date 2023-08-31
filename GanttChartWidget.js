@@ -186,14 +186,6 @@ _callCloudFunction(){
                     }
                 })
             }
-}
-
-
-
-
-
-
     }
-
     customElements.define('gantt-chart-widget', GanttChartWidget);
 })();
