@@ -140,37 +140,7 @@ this._shadowRoot.getElementById('debugToggle').addEventListener('change', () => 
     debugStatus.textContent = 'Debugging Mode Inactive';
     debuggingArea.style.display = 'none';
   }
-
-  const sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoibHNpWG5QSzBkcWVUemZwOS1oOFNIZyIsIm5iZiI6MTY5MzQ5MTk0NSwiaWF0IjoxNjkzNDkyMjQ1LCJleHAiOjE2OTM0OTU4NDUsImp0aSI6ImViZWQ3NzY0Zjc0NmI4MTM1ODBjNjFhNjdhZjkzODQ1NmYxYWFhYWIifQ.mBLAaNcW9pUmsWMrFn3P_DgkhszAcWEjWz_JDwIN30-c_OhviPP-0DMp6YQwp9bxY2ynHBz6KU2lG6lkwCDtFi1Mf4HmCY-tCZehBGQNBzRntwBgow6BLoggIa09SVCNvV0_PBNkVYMgKIB9Sy5K6urk48e5RVCTvUo-Nm553FspB6yNI5orO0QQMCgmWV5MoPgGScIjXsrZCSLtG2VjauEmhML2iV8RthWXokTMzsXo7UmyHzXxoGF1JBrQvgRmQcTulgRfltAHbJhq7BUHw0oRUJZFtURibmiG23iTv4i_-Uy0SyAURRKZRx0UnOozLdbI4OWgFgIDAQRBdCS_4w";
-                jQuery.ajax({
-                    url: "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger",
-                    type: "GET",
-                    crossDomain: true,
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + sToken );
-                    },
-                    crossDomain: true,
-                    error: function (err) {
-                        switch (err.status) {
-                            case "400":
-                                alert("bad request");
-                                break;
-                            case "401":
-                                alert("unauthorized");
-                                break;
-                            case "403":
-                                alert("forbidden");
-                                break;
-                            default:
-                                alert("Error occured");
-                                break;
-                        };
-                        console.log("Error");
-                    },
-                    success: function () {
-                        console.log("Success");
-                    }
-                });
+    
 });
 
 
