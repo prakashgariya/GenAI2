@@ -3,17 +3,11 @@
     tmpl.innerHTML = `
     <style>
     </style>
-    <div id="ui_content" name="ui_content">
-        <slot name="content"></slot>
+    <div id="debugging-area" style="display: none;">
+          <h2>Debugging Mode</h2>
+          <button id="getAccessToken">Get Access Token</button>
+          <h3>Messages</h3>
     </div>
-    <script
-        src="https://cdn.cai.tools.sap/webclient/bootstrap.js"
-        data-channel-id="a01796f4-8804-41d8-99c7-32858bd0a29e"
-        data-token="bace1ac00562c25447d5c2187cba4f8e"
-        data-expander-type="CAI"
-        data-expander-preferences="JTdCJTIyZXhwYW5kZXJMb2dvJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjZG4uY2FpLnRvb2xzLnNhcCUyRndlYmNoYXQlMkZ3ZWJjaGF0LWxvZ28uc3ZnJTIyJTJDJTIyZXhwYW5kZXJUaXRsZSUyMiUzQSUyMkNsaWNrJTIwb24lMjBtZSElMjIlMkMlMjJvbmJvYXJkaW5nTWVzc2FnZSUyMiUzQSUyMkNoYXQlMjB3aXRoJTIwbWUhJTIyJTJDJTIydGhlbWUlMjIlM0ElMjJERUZBVUxUJTIyJTdE"
-        id="cai-webclient-custom">
-    </script>
     `;
 
     class GenAIwidget extends HTMLElement {
