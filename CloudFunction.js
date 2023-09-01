@@ -1,12 +1,7 @@
 (function(){
-
-    const jQueryLink = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js";
     
     let template = document.createElement("template");
     template.innerHTML = `
-    <div>
-    <button>Generate Insights</button>
-    </div>
     <a href="https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger" target="_blank">CLick this link</a>
     `;
 
