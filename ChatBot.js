@@ -1,6 +1,7 @@
 (function () {
     let template = document.createElement("template");
     let _id;
+    let _shadowRoot;
     template.innerHTML = `
         <style>
         </style>
@@ -22,11 +23,11 @@
     class ChatBot extends HTMLElement {
         constructor() {
             super();
-            this._shadowRoot = this.attachShadow({ mode: "open" });
-            this._shadowRoot.appendChild(template.content.cloneNode(true));
+            _shadowRoot = this.attachShadow({ mode: "open" });
+            _shadowRoot.appendChild(template.content.cloneNode(true));
 
             _id = createGuid();
-            this._shadowRoot.querySelector("#oView").id = _id + "_oView";
+            _shadowRoot.querySelector("#oView").id = _id + "_oView";
             loadthis(this);
         }
 
