@@ -3,10 +3,23 @@
     const jQueryScript = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
     let template = document.createElement("template");
     template.innerHTML = `
+    <style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    </style>
     <div>
-    <button>Generate Insights</button>
+    <button class="button">Generate Insights</button>
     </div>
-    <a href="https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger" target="_blank">CLick this link</a>
     `;
 
     class CloudFunction extends HTMLElement {
