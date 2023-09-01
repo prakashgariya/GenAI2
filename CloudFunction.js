@@ -19,6 +19,7 @@
     </style>
     <div>
     <button class="button">Generate Insights</button>
+    <textarea id="textArea" name="textArea" rows="100" cols="50"></textarea>
     </div>
     `;
 
@@ -45,9 +46,11 @@
                 crossDomain: true,
                 error: function (err) {
                     console.log("Error");
+                    $("#textArea").val(err);
                 },
-                success: function () {
+                success: function (data, textStatus) {
                     console.log("Success");
+                    $("#textArea").val(data);
                 }
             });
         }
