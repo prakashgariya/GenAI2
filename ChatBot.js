@@ -39,9 +39,7 @@
         onCustomWidgetBeforeUpdate(oChangedProperties) {}
 
         //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
-        onCustomWidgetAfterUpdate(oChangedProperties) {
-            
-        }
+        onCustomWidgetAfterUpdate(oChangedProperties) {}
 
     }
 
@@ -75,6 +73,14 @@
                 viewContent: jQuery(_shadowRoot.getElementById(_id + "_oView")).html(),
             });
             oView.placeAt(content);
+        });
+    }
+
+    function createGuid() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+            let r = Math.random() * 16 | 0,
+                v = c === "x" ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
         });
     }
 })();
