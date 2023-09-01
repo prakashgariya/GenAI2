@@ -7,7 +7,7 @@
         <div id="ui5_content" name="ui5_content">
          <slot name="content"></slot>
         </div>
-        <script id="myXmlView" name="oView" type="sapui5/xmlview">
+        <script id="oView" name="oView" type="sapui5/xmlview">
         <mvc:View
             controllerName="chatbot.Template"
             xmlns:mvc="sap.ui.core.mvc"
