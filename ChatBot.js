@@ -24,6 +24,7 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
+            _id = createGuid();
             this._shadowRoot.querySelector("#oView").id = _id + "_oView";
             loadthis(this);
         }
