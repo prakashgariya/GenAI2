@@ -1,5 +1,6 @@
 (function () {
     let template = document.createElement("template");
+    let _id;
     template.innerHTML = `
         <style>
         </style>
