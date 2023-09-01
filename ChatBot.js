@@ -1,16 +1,21 @@
 (function () {
-
-    const jQueryScript = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
     let template = document.createElement("template");
     template.innerHTML = `
-    <script
-        src="https://cdn.cai.tools.sap/webclient/bootstrap.js"
-        data-channel-id="a01796f4-8804-41d8-99c7-32858bd0a29e"
-        data-token="bace1ac00562c25447d5c2187cba4f8e"
-        data-expander-type="CAI"
-        data-expander-preferences="JTdCJTIyZXhwYW5kZXJMb2dvJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjZG4uY2FpLnRvb2xzLnNhcCUyRndlYmNoYXQlMkZ3ZWJjaGF0LWxvZ28uc3ZnJTIyJTJDJTIyZXhwYW5kZXJUaXRsZSUyMiUzQSUyMkNsaWNrJTIwb24lMjBtZSElMjIlMkMlMjJvbmJvYXJkaW5nTWVzc2FnZSUyMiUzQSUyMkNoYXQlMjB3aXRoJTIwbWUhJTIyJTJDJTIydGhlbWUlMjIlM0ElMjJERUZBVUxUJTIyJTdE"
-        id="cai-webclient-custom">
-    </script>
+        <style>
+        </style>
+        <div id="ui5_content" name="ui5_content">
+         <slot name="content"></slot>
+        </div>
+        <script id="myXmlView" name="oView" type="sapui5/xmlview">
+        <mvc:View
+            controllerName="chatbot.Template"
+            xmlns:mvc="sap.ui.core.mvc"
+            xmlns:l="sap.ui.layout"
+            xmlns:m="sap.m"
+	    >
+        <Button text="Hello" id="idButton" press="onButtonPress"></Button>
+        </mvc:View>
+        </script>
     `;
 
     class ChatBot extends HTMLElement {
@@ -19,8 +24,56 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
+            this._shadowRoot.querySelector("#oView").id = _id + "_oView";
+            loadthis(this);
         }
+
+        //Fired when the widget is added to the html DOM of the page
+        connectedCallback(){}
+
+        //Fired when the widget is removed from the html DOM of the page (e.g. by hide)
+        disconnectedCallback() {}
+
+        //When the custom widget is updated, the Custom Widget SDK framework executes this function first
+        onCustomWidgetBeforeUpdate(oChangedProperties) {}
+
+        //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
+        onCustomWidgetAfterUpdate(oChangedProperties) {
+            
+        }
+
     }
 
     customElements.define('sac-chatbot', ChatBot);
+
+    function loadthis(that){
+        var that_ = that;
+        let content = document.createElement('div');
+        content.slot = "content";
+        that_.appendChild(content);
+
+        sap.ui.getCore().attachInit(function () {
+            "use strict";
+
+            sap.ui.define([
+                "jquery.sap.global",
+                "sap/ui/core/mvc/Controller"
+            ], function (jQuery, Controller) {
+                "use strict";
+
+                return Controller.extend("chatbot.Template", {
+                    onButtonPress : function (oEvent) {
+                        console.log("Button pressed");
+                        alert("Button Pressed");
+                    }
+                });
+            });
+
+            //### THE APP: place the XMLView somewhere into DOM ###
+            var oView = sap.ui.xmlview({
+                viewContent: jQuery(_shadowRoot.getElementById(_id + "_oView")).html(),
+            });
+            oView.placeAt(content);
+        });
+    }
 })();
