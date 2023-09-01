@@ -16,10 +16,14 @@
         margin: 4px 2px;
         cursor: pointer;
     }
+    .textarea {
+        width:100%;
+        height:100%;
+    }
     </style>
     <div>
     <button class="button">Generate Insights</button>
-    <textarea id="textArea" name="textArea">Generated Insights will show up here</textarea>
+    <textarea id="textArea" name="textArea" class="textarea">Generated Insights will show up here</textarea>
     </div>
     `;
 
