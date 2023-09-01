@@ -15,7 +15,7 @@
             xmlns:l="sap.ui.layout"
             xmlns:m="sap.m"
 	    >
-        <Button text="Hello" id="idButton" press="onButtonPress"></Button>
+        <m:Button text="Hello" id="idButton" press="onButtonPress"></m:Button>
         </mvc:View>
         </script>
     `;
