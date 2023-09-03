@@ -559,7 +559,7 @@
                             messages : [{ role : "user", content : question }]
                         });
 
-                        const API_URL = "<https://api.openai.com/v1/chat/completions>";
+                        const API_URL = "https://api.openai.com/v1/chat/completions";
                         const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
