@@ -15,6 +15,7 @@
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
+        width:100%;
     }
     .textarea {
         width:100%;
@@ -39,7 +40,7 @@
         }
 
         _onButtonClick(event) {
-            let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE3NDQ4NTI2NjMzNzY4Nzc5ODMyIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS12aWtpc2hvcmVAZGVsb2l0dGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ0Mko0akpvTEhvNkhIdEZYOEd5UnNBIiwibmJmIjoxNjkzNTY2MTU3LCJpYXQiOjE2OTM1NjY0NTcsImV4cCI6MTY5MzU3MDA1NywianRpIjoiYTYyZjBjY2M1NjkxMDVmMzM1NmM1MzE2MWQ5YjJhODU2M2M4MDY5NCJ9.DJDPE6J14ZapUlIhYpXiaXUyPuQiOzGodV1vasQq6hPVeH4k35dT8o_UbPUzj7iWsH9-P5vSFB7Rjo7LpxP2-rySyNQc3ZSv9T5QxA4nEPrA4HidaFAqy0_wO_lx5GdCCDYBJIe2JnDO8wHLQJyU6vKNNzcd3nMCunuYr9nyTKn_QVhIEymvUnpa-ExfZNaQJ48FrDPRLtIuJ8TTaBHdGt7vEuHIyEuCWyT8cQwFV54AdIiPIaF1N9aV4gbiiPXLIjTFf44BSNDyGpy3hjpcPYb_DZp74RxcaNiEOvHwpaPZwfOHoaxZkUR4SBFEHSoZdPqHfa1RVfYRShbZKW_GSg";
+            let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE3NDQ4NTI2NjMzNzY4Nzc5ODMyIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS12aWtpc2hvcmVAZGVsb2l0dGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJKdy1IRzJaaGVmbTJzeEwxT0RjNGdnIiwibmJmIjoxNjkzNzI0MzgyLCJpYXQiOjE2OTM3MjQ2ODIsImV4cCI6MTY5MzcyODI4MiwianRpIjoiNjVlNmU2NTU1M2NhMDZkMGY1NjhjMjBhYTkzYzQ1NGVlMjlmMDBjOCJ9.HV0ODJHz7eLwDOBHc9mn9GBDggGU3yb-fHnTOE3u1l4qPYK3LGzfQbt4U0Mv1yppCSNE9dvJHZUw3yGizhg99G-6a9xNVQA-qdQTgdpga0AIaPdhoi-PZtXPgw7bpfhS5pxoWmRotIfzp5pzc8f9MPaQfe0WnNL0h5dBCsy7hTQQw6-AiTzqaLHv7Et5RIUpgUAX6ebhnum6dye1qAHv7SrBYgd7DsqytKcRJtGvRTwJnedS8TUylPyTjOsqN0vziT7Um08dtXPSwt7d_JwkDlg-EY4CHZ0wF4xwa1h2gPoCUFPis5AJksTcch3bXOvHLZmWnZFbH2OJIKF_E0JemA";
             var textArea = this.shadowRoot.getElementById('textArea');
             jQuery.ajax({
                 url: "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger",
