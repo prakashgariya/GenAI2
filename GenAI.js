@@ -563,7 +563,7 @@
                         });
 
                         const API_URL = "https://api.openai.com/v1/chat/completions";
-                        const API_KEY = "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";
+                        const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
                         if (_id != undefined) {
@@ -591,6 +591,7 @@
                             },
                             error: function(sError) {
                                 chatbot.addChatItem("Something error!", false);
+                                chatbot.botFinishTyping();
                             }
                         });
                     }
