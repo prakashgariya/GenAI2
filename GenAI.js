@@ -570,30 +570,55 @@
                             //payload.id = _id;
                         }
 
-                        jQuery.ajax({
-                            url: API_URL,
-                            cache: false,
-                            type: "POST",
-                            headers: {
-                                'Authorization': `Bearer ${API_KEY}`,
-                                'Content-Type': 'application/json'
-                            },
-                            data: data,
-                            async: true,
-                            success: function(sData) {
-                                console.log('[POST] /discover-dialog', sData);
+                        question = question.toUpperCase();
+                        if(question.search("HI") !== -1 || question.search("HELLO") !== -1){
+                            chatbot.addChatItem("Hello I am your virtual assistant./n What can I help you with today?", false);}
+                        else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
+                            chatbot.addChatItem("Thank you..!!/n Have a nice day", false);
+                            setTimeout(function() {
+                                this_._toggleClose();
+                            }, 1000);
+                        } else if (question.search("DISEASE SEASON") !== -1 || question.search("SEASON") !== -1){
+                            chatbot.addChatItem("There are 4 seasons. /n Winter, Spring, Summer, Fall", false);
+                        } else if(question.search("YOY") !== -1 || question.search("VARIANCE") !== -1){
+                            chatbot.addChatItem("Variance is calculated by ( Current Sales - Last Year Sales )", false);
+                        } else {
+                            chatbot.addChatItem("I am not trained to answer this query..!!", false);
+                        }
 
-                                const data = sData.json();
-                                chatbot.addChatItem(data.choices[0].message.content, false);
-                                //chatbot.addChatItem(sData.results.messages[0].content, false);
-                                chatbot.botFinishTyping();
-                                localStorage.setItem("chatId", sData.id);
-                            },
-                            error: function(sError) {
-                                chatbot.addChatItem("Something error!", false);
-                                chatbot.botFinishTyping();
-                            }
-                        });
+                        // switch (question.toUpperCase()){
+                        // case "HI" :
+                        //     chatbot.addChatItem("Hello I am your virtual assistant./n What can I help you with today?", false);
+                        //     break;
+                        // case "WHAT IS YOUR CAPABILITY" :
+                        //     chatbot.addChatItem("");
+                        // }
+
+
+                        // jQuery.ajax({
+                        //     url: API_URL,
+                        //     cache: false,
+                        //     type: "POST",
+                        //     headers: {
+                        //         'Authorization': `Bearer ${API_KEY}`,
+                        //         'Content-Type': 'application/json'
+                        //     },
+                        //     data: data,
+                        //     async: true,
+                        //     success: function(sData) {
+                        //         console.log('[POST] /discover-dialog', sData);
+
+                        //         const data = sData.json();
+                        //         chatbot.addChatItem(data.choices[0].message.content, false);
+                        //         //chatbot.addChatItem(sData.results.messages[0].content, false);
+                        //         chatbot.botFinishTyping();
+                        //         localStorage.setItem("chatId", sData.id);
+                        //     },
+                        //     error: function(sError) {
+                        //         chatbot.addChatItem("Something error!", false);
+                        //         chatbot.botFinishTyping();
+                        //     }
+                        // });
                     }
                 });
             });
