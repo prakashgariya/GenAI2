@@ -582,7 +582,10 @@
                             chatbot.addChatItem("There are 4 seasons. \n Winter, Spring, Summer, Fall", false);
                         } else if(question.search("YOY") !== -1 || question.search("VARIANCE") !== -1){
                             chatbot.addChatItem("Variance is calculated by ( Current Sales - Last Year Sales )", false);
-                        } else {
+                        } else if(question.search("NAMASTE") !== -1){
+                            chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
+                        } 
+                        else {
                             chatbot.addChatItem("I am not trained to answer this query..!!", false);
                         }
                         chatbot.botFinishTyping();
