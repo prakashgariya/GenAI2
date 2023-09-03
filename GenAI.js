@@ -311,8 +311,8 @@
 
                     init: function() {
                         //initialisation code, in this case, ensure css is imported
-                        var libraryPath = jQuery.sap.getModulePath("pfe.bot");
-                        jQuery.sap.includeStyleSheet(libraryPath + "/ChatBotGenAI/css/bkChat.css");
+                        //var libraryPath = jQuery.sap.getModulePath("pfe.bot");
+                        jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
 
 
                         var oBtn = new Button(this.getId() + "-bkChatButton", {
