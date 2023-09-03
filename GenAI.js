@@ -25,7 +25,7 @@
                                         width="350px"
                                         showCloseButton="true"
                                         send="onSendPressed"
-                                        initialMessage="hello wha dup?"
+                                        initialMessage="Hello, how may I help you today?"
                                         placeHolder="Chat with me"
                                         userIcon="https://prakashgariya.github.io/GenAI2/UserIcon.png"
                                         robotIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png"
@@ -559,8 +559,8 @@
                             messages : [{ role : "user", content : question }]
                         });
 
-                        const API_URL = "<https://api.openai.com/v1/chat/completions>";
-                        const API_KEY = "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";
+                        const API_URL = "https://api.openai.com/v1/chat/completions";
+                        const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
                         if (_id != undefined) {
