@@ -316,6 +316,9 @@
 
 
                         var oBtn = new Button(this.getId() + "-bkChatButton", {
+                            //text: "ChatBot",
+                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
+                            iconDensityAware: false,
                             press: this._onOpenChat.bind(this)
                         });
                         this.setAggregation("_chatButton", oBtn);
