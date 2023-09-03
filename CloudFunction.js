@@ -19,7 +19,7 @@
     }
     .textarea {
         width:100%;
-        height:100%;
+        height:514px;
     }
     </style>
     <div>
