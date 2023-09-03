@@ -29,7 +29,7 @@
                                         placeHolder="Chat with me"
                                         userIcon="https://prakashgariya.github.io/GenAI2/UserIcon.png"
                                         robotIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png"
-                                        buttonIcon="sap-icon://discussion">                                        
+                                        buttonIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png">                                        
                     </fd:Headline>                 
             </mvc:View>
         </script>
@@ -340,7 +340,7 @@
                             showHeader: true,
                             resizable: true,
                             horizontalScrolling: false,
-                            verticalScrolling: false,
+                            verticalScrolling: true,
                             beforeClose: function(e) {
                                 ResizeHandler.deregister(this.sResizeHandleId);
                             }.bind(this),
@@ -554,7 +554,13 @@
                         var chatbot = this.getView().byId("botchat");
                         var question = oEvent.getParameter("text");
                         console.log(question);
-                        var data = '{"message": {"content":"' + question + '","type":"text"}, "conversation_id": "CONVERSATION_ID"}';
+                        var data = JSON.stringify({
+                            model : "gpt-3.5-turbo",
+                            messages : [{ role : "user", content : question }]
+                        });
+
+                        const API_URL = "<https://api.openai.com/v1/chat/completions>";
+                        const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
                         if (_id != undefined) {
@@ -562,11 +568,11 @@
                         }
 
                         jQuery.ajax({
-                            url: "REPLACE_WITH_SAP_CAI_ENDPOINT",
+                            url: API_URL,
                             cache: false,
                             type: "POST",
                             headers: {
-                                'Authorization': 'User xxxx',
+                                'Authorization': `Bearer ${API_KEY}`,
                                 'Content-Type': 'application/json'
                             },
                             data: data,
@@ -574,7 +580,9 @@
                             success: function(sData) {
                                 console.log('[POST] /discover-dialog', sData);
 
-                                chatbot.addChatItem(sData.results.messages[0].content, false);
+                                const data = sData.json();
+                                chatbot.addChatItem(data.choices[0].message.content, false);
+                                //chatbot.addChatItem(sData.results.messages[0].content, false);
                                 chatbot.botFinishTyping();
                                 localStorage.setItem("chatId", sData.id);
                             },
