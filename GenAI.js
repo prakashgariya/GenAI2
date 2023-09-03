@@ -559,8 +559,8 @@
                             messages : [{ role : "user", content : question }]
                         });
 
-                        const API_URL = "https://api.openai.com/v1/chat/completions";
-                        const API_KEY = "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";
+                        const API_URL = "<https://api.openai.com/v1/chat/completions>";
+                        const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
                         if (_id != undefined) {
