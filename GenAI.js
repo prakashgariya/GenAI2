@@ -589,7 +589,7 @@
                         } 
                         else {
                             const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
-                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNUNaR1lCSGRlMWJDdVBwZ0Q1MGFnQSIsIm5iZiI6MTY5MzkwNDcwOCwiaWF0IjoxNjkzOTA1MDA4LCJleHAiOjE2OTM5MDg2MDgsImp0aSI6IjBkZTBkZDI2NzMzYjIwOTdlYzcyN2U0NzkzOGNiYTBhYWNmNzk3YmUifQ.Z04z-W1d3u9Ke4OciOQ2YGFuKJ3HDUE-fFPFUUrZzftlgRCemvevoRBiGkVzYRQnJbxDX2vaY4deA3afuaqVm9E8P3b0_L0C-mIgOy87iBcEiy3uPUtmoviQ8mJcBW6FzEQpqgLT0PWxxideGDu88BgFInc6XuwO2Hr9Bj0ux5n1jXYOT8IGOBLS2d3NL3pc70ZYbBe4EjeyYwkNY-duxbjpHvvma0_MmP8_cgfYUn7Tl4Y0Fz4yARaKN6Ag6QQ9gMWjQC5qjekNGR1O-2t5uZ0l-Br7_aFPZy6AWgBJSLbKhKgevpv-Q_rc7MJ22DJ4e30kZw6vuMLrmG_zf6I1Ug";
+                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoidFd1NHQ3Tm1rYWZBdVdoYnNJZ2thdyIsIm5iZiI6MTY5Mzk0NjQ0NiwiaWF0IjoxNjkzOTQ2NzQ2LCJleHAiOjE2OTM5NTAzNDYsImp0aSI6ImZhOWM2MGVjNjllYjhmYjA3ODZjMjM0MzgyYWNlNjU3NTBlY2UxZTMifQ.I3woG1_9Tm-afdtwujfLtPWrJen3joZ9eryM9NNnrtOOxRx1bnxN1WZFv26p0j9YfR7coa1RYeeq8sJ3vGXxu66fOAhwxbQ-uPfIJVD10YkZML_HbFm_rhv3tJUKDMZhZ9yUurgdFXsHBsay3Ly9lChfTuexl8u1OWYmmHo6RZ7CHgH6lSaHD4mhseE2kf9ql-u_iK2UWj2wJxT9kCE0G1H0N5Z1E9O9wpfI0BkS_k-8hcRZuT4lzYuvkSDHQr8zQUDsFiJWdRfRYh8bnDUzW3C75AV-9NbLhpEOjOFL8nQDrSH2NjTYq5ZQaL42u8xuYVSb1T0DosT0bz4RsercWgs";
                             jQuery.ajax({
                                     url: API_URL,
                                     cache: false,
@@ -601,10 +601,10 @@
                                     data: data,
                                     async: true,
                                     success: function(sData) {
-                                        const data = sData.json();
-                                        chatbot.addChatItem(data.choices[0].message.content, false);
+                                       // const data = sData.json();
+                                        chatbot.addChatItem(sData, false);
                                         chatbot.botFinishTyping();
-                                        localStorage.setItem("chatId", sData.id);
+                                        //localStorage.setItem("chatId", sData.id);
                                     },
                                     error: function(sError) {
                                         chatbot.addChatItem("Oops couldn't get your response..!!!", false);
