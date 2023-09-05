@@ -513,7 +513,7 @@
                     },
 
                     botStartTyping: function() {
-                        sap.ui.getCore().byId(this.getId() + "-bkChatStatusBar").setText("Bot is typing...");
+                        sap.ui.getCore().byId(this.getId() + "-bkChatStatusBar").setText("Fetching Details...");
                     },
 
                     botFinishTyping: function() {
@@ -557,13 +557,15 @@
                         var chatbot = this.getView().byId("botchat");
                         var question = oEvent.getParameter("text");
                         console.log(question);
-                        var data = JSON.stringify({
-                            model : "gpt-3.5-turbo",
-                            messages : [{ role : "user", content : question }]
-                        });
+                        // var data = JSON.stringify({
+                        //     model : "gpt-3.5-turbo",
+                        //     messages : [{ role : "user", content : question }]
+                        // });
 
-                        const API_URL = "https://api.openai.com/v1/chat/completions";
-                        const API_KEY = "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";
+                        var data = {"question":question};
+
+                        // const API_URL = "https://api.openai.com/v1/chat/completions";
+                        // const API_KEY = "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";
 
                         var _id = localStorage.getItem("chatId");
                         if (_id != undefined) {
@@ -578,7 +580,7 @@
                             setTimeout(function() {
                                 chatbot._toggleClose();
                             }, 1000);
-                        } else if (question.search("DISEASE SEASON") !== -1 || question.search("SEASON") !== -1){
+                        } else if (question.search("DISEASE SEASON") !== -1){
                             chatbot.addChatItem("There are 4 seasons. \n Winter, Spring, Summer, Fall", false);
                         } else if(question.search("YOY") !== -1 || question.search("VARIANCE") !== -1){
                             chatbot.addChatItem("Variance is calculated by ( Current Sales - Last Year Sales )", false);
@@ -586,17 +588,31 @@
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
                         } 
                         else {
-                            chatbot.addChatItem("I am not trained to answer this query..!!", false);
+                            const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
+                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3ZTExNDEwNTlhMTliMjE4MjA5YmM1YWY3YTgxYTcyMGUzOWI1MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNUNaR1lCSGRlMWJDdVBwZ0Q1MGFnQSIsIm5iZiI6MTY5MzkwNDcwOCwiaWF0IjoxNjkzOTA1MDA4LCJleHAiOjE2OTM5MDg2MDgsImp0aSI6IjBkZTBkZDI2NzMzYjIwOTdlYzcyN2U0NzkzOGNiYTBhYWNmNzk3YmUifQ.Z04z-W1d3u9Ke4OciOQ2YGFuKJ3HDUE-fFPFUUrZzftlgRCemvevoRBiGkVzYRQnJbxDX2vaY4deA3afuaqVm9E8P3b0_L0C-mIgOy87iBcEiy3uPUtmoviQ8mJcBW6FzEQpqgLT0PWxxideGDu88BgFInc6XuwO2Hr9Bj0ux5n1jXYOT8IGOBLS2d3NL3pc70ZYbBe4EjeyYwkNY-duxbjpHvvma0_MmP8_cgfYUn7Tl4Y0Fz4yARaKN6Ag6QQ9gMWjQC5qjekNGR1O-2t5uZ0l-Br7_aFPZy6AWgBJSLbKhKgevpv-Q_rc7MJ22DJ4e30kZw6vuMLrmG_zf6I1Ug";
+                            jQuery.ajax({
+                                    url: API_URL,
+                                    cache: false,
+                                    type: "GET",
+                                    headers: {
+                                        'Authorization': `Bearer ${API_KEY}`,
+                                        'Content-Type': 'application/json'
+                                    },
+                                    data: data,
+                                    async: true,
+                                    success: function(sData) {
+                                        const data = sData.json();
+                                        chatbot.addChatItem(data.choices[0].message.content, false);
+                                        chatbot.botFinishTyping();
+                                        localStorage.setItem("chatId", sData.id);
+                                    },
+                                    error: function(sError) {
+                                        chatbot.addChatItem("Oops couldn't get your response..!!!", false);
+                                        chatbot.botFinishTyping();
+                                    }
+                                });
                         }
                         chatbot.botFinishTyping();
-
-                        // switch (question.toUpperCase()){
-                        // case "HI" :
-                        //     chatbot.addChatItem("Hello I am your virtual assistant./n What can I help you with today?", false);
-                        //     break;
-                        // case "WHAT IS YOUR CAPABILITY" :
-                        //     chatbot.addChatItem("");
-                        // }
 
 
                         // jQuery.ajax({
