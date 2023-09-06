@@ -320,8 +320,8 @@
                         var oBtn = new Image(this.getId() + "-bkChatButton", {
                             //text: "ChatBot",
                             src: "https://prakashgariya.github.io/GenAI2/AskMe.png",
-                            width: "5rem",
-                            height: "5rem",
+                            width: "4rem",
+                            height: "4rem",
 //                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
   //                          iconDensityAware: false,
                             press: this._onOpenChat.bind(this)
