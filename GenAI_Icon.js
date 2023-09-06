@@ -208,7 +208,7 @@
         }
 
     }
-    customElements.define("sap-sac-genai", GenAI);
+    customElements.define("sap-sac-genai-1", GenAI);
 
     // UTILS
     function loadthis(that) {
