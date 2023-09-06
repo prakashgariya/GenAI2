@@ -29,7 +29,7 @@
                                         placeHolder="Chat with me"
                                         userIcon="https://prakashgariya.github.io/GenAI2/UserIcon.png"
                                         robotIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png"
-                                        buttonIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png">                                        
+                                        buttonIcon="https://prakashgariya.github.io/GenAI2/AskMe.png">                                        
                     </fd:Headline>                 
             </mvc:View>
         </script>
@@ -238,8 +238,9 @@
                 "sap/m/ScrollContainer",
                 "sap/m/Bar",
                 "sap/m/Title",
-                "sap/ui/core/ResizeHandler"
-            ], function(Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler) {
+                "sap/ui/core/ResizeHandler",
+                "sap/m/Image"
+            ], function(Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler, Image) {
                 "use strict";
 
                 var ChatDialog = Control.extend("fd.ui.Headline", {
@@ -290,7 +291,8 @@
                         },
                         aggregations: {
                             _chatButton: {
-                                type: "sap.m.Button",
+                                type: "sap.m.Image",
+//                                type: "sap.m.Button",
                                 multiple: false
                             },
                             _popover: {
@@ -315,10 +317,13 @@
                         jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
 
 
-                        var oBtn = new Button(this.getId() + "-bkChatButton", {
+                        var oBtn = new Image(this.getId() + "-bkChatButton", {
                             //text: "ChatBot",
-                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
-                            iconDensityAware: false,
+                            src: "https://prakashgariya.github.io/GenAI2/AskMe.png",
+                            width: "5rem",
+                            height: "5rem",
+//                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
+  //                          iconDensityAware: false,
                             press: this._onOpenChat.bind(this)
                         });
                         this.setAggregation("_chatButton", oBtn);
@@ -458,7 +463,8 @@
 
                     setButtonIcon: function(sButtonIcon) {
                         this.setProperty("buttonIcon", sButtonIcon, true);
-                        sap.ui.getCore().byId(this.getId() + "-bkChatButton").setIcon(sButtonIcon);
+                        // sap.ui.getCore().byId(this.getId() + "-bkChatButton").setIcon(sButtonIcon);
+                        sap.ui.getCore().byId(this.getId() + "-bkChatButton").setSrc(sButtonIcon);
                     },
 
                     setInitialMessage: function(sText) {
@@ -589,7 +595,7 @@
                         } 
                         else {
                             const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
-                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiSzh2QVVQSnhnV25mRURYUVNIOFd5QSIsIm5iZiI6MTY5Mzk4NDk0NiwiaWF0IjoxNjkzOTg1MjQ2LCJleHAiOjE2OTM5ODg4NDYsImp0aSI6ImMyOTk1ODI3ZTNlNDgxMzM4MTM2MzIzOTUyMmNmYWU0MzM3ZjY2YjEifQ.LohMTFfs6EPCI9Y8KTI5x1ZnBq_jpx11XgH55eVVFWhEsk-rt7IHUU4W30-MgCYgdTeaL0P6j4pRhxrX9yJ7wZONqGHVT-lISYOqeWkt0cyypDPElPbVP5eO1JeYba_7xyWzC5zDV_8gKhfo1WJjpsM0XqY5EjIlFLMKIiS8DQ5FSB64o4Qk-fHj6F7s6kRgRhfitWO7qn-TrunyJ8dMk9H8FxVLkk2Ws-6QmQ6U0kc8FTv_fTalgCBILwqdN8YPIErJyCMXj1nYqsGZ7i9Qt6sxh5UrRH3kBlcWfgHp3MS2Lk21t45kuTjfoQzQa8JPvdPQxhTrM8M6q5dM2zXXxA";
+                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiTTZFODA1SHNpY2s3MWttMXdBc3h2QSIsIm5iZiI6MTY5Mzk4MDM3NiwiaWF0IjoxNjkzOTgwNjc2LCJleHAiOjE2OTM5ODQyNzYsImp0aSI6IjgzM2YyNzhmZTlhNzNjODAwZmNkMjAxZDUyYmU2YmJkMTE0OTQ5NmYifQ.aJ5QAlnjYgWHZgSb8D0mPwbaFcSdPz3KuyNtcQDAcHO4smdXqltOBPmyqtictHbGOXHctyxmmUuY5-Icfa8ELJ3AjWjIU8F15Pe0sa1RHCe_nKU95MmHRYkqYqE1o4nA-IvkyD2PtZBIg5CTqMeFp_KvoyPctZkuV1NwT9xRn9v8HnsmyITHwSA2DZ0LJ84U311fwBMaro-1oD1nE3uDxRS4V4l7hq7_zJfQmbO7MFWR1k7Ks-gNMf221yDu4E1s_EzUBbMglgxr3weocVLKA23hN2_uoeagq58BbaETO55PBmF_9JNUaj8dIMCAC3XxTNDESp_mKLBcE3iJwO9J6w";
                             jQuery.ajax({
                                     url: API_URL,
                                     cache: false,
