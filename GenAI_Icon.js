@@ -29,7 +29,7 @@
                                         placeHolder="Chat with me"
                                         userIcon="https://prakashgariya.github.io/GenAI2/UserIcon.png"
                                         robotIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png"
-                                        buttonIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png">                                        
+                                        buttonIcon="https://prakashgariya.github.io/GenAI2/AskMe.png">                                        
                     </fd:Headline>                 
             </mvc:View>
         </script>
@@ -319,7 +319,7 @@
 
                         var oBtn = new Image(this.getId() + "-bkChatButton", {
                             //text: "ChatBot",
-                            src: "https://prakashgariya.github.io/GenAI2/ChatBot.png",
+                            src: "https://prakashgariya.github.io/GenAI2/AskMe.png",
                             width: "5rem",
                             height: "5rem",
                             //iconDensityAware: false,
