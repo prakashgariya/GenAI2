@@ -239,8 +239,9 @@
                 "sap/m/Bar",
                 "sap/m/Title",
                 "sap/ui/core/ResizeHandler",
-                "sap/ui/core/Icon"
-            ], function(Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler, Icon) {
+                "sap/ui/core/Icon",
+                "sap/m/Image"
+            ], function(Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler, Icon, Image) {
                 "use strict";
 
                 var ChatDialog = Control.extend("fd.ui.Headline", {
@@ -291,7 +292,7 @@
                         },
                         aggregations: {
                             _chatButton: {
-                                type: "sap.ui.core.Icon",
+                                type: "sap.m.Image",
                                 multiple: false
                             },
                             _popover: {
@@ -316,7 +317,7 @@
                         jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
 
 
-                        var oBtn = new Icon(this.getId() + "-bkChatButton", {
+                        var oBtn = new Image(this.getId() + "-bkChatButton", {
                             //text: "ChatBot",
                             src: "https://prakashgariya.github.io/GenAI2/ChatBot.png",
                             width: "5rem",
@@ -461,7 +462,7 @@
 
                     setButtonIcon: function(sButtonIcon) {
                         this.setProperty("buttonIcon", sButtonIcon, true);
-                        sap.ui.getCore().byId(this.getId() + "-bkChatButton").setIcon(sButtonIcon);
+                        sap.ui.getCore().byId(this.getId() + "-bkChatButton").setSrc(sButtonIcon);
                     },
 
                     setInitialMessage: function(sText) {
