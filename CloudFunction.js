@@ -19,7 +19,7 @@
     }
     .textarea {
         width:100%;
-        height:514px;
+        height:460px;
     }
     .img {
         display: block;
