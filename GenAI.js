@@ -20,7 +20,7 @@
                 xmlns:fd="fd.ui"> 
                 <!-- use our custom control, see below -->
                 <fd:Headline id="botchat"
-                                        title="Chat"
+                                        title="Ask Me"
                                         height="600px"
                                         width="350px"
                                         showCloseButton="true"
@@ -488,6 +488,7 @@
                         this.fireEvent("send", {
                             text: sText
                         }, false, true);
+                        //this_.botStartTyping();
                     },
 
                     _onOpenChat: function(oEvent) {
@@ -595,7 +596,7 @@
                         } 
                         else {
                             const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
-                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiR1ZOaGtfdHU2WlR0Z2d3UXZhaW9NdyIsIm5iZiI6MTY5NDAxMjI5OCwiaWF0IjoxNjk0MDEyNTk4LCJleHAiOjE2OTQwMTYxOTgsImp0aSI6IjE1MTA2YTEyMzFiNjdkNjBkOTU3MDJmMjQzOThmOWIzMjIzNGJmM2IifQ.hlz_580xfRtAcTFWjxEqp9qJ5eNHAyHbrAVjXEMKVwcYWmTKpRE6MastuvXOEk6IDfrRdN-v3IVSvCUeEdJq0k5RUxlveb6QRk9JDBOGl0W8uw5L8CjrTkoZAF6ozl3HA_mHwTaXyTshf7lxQMGgE2VnZYP0Z1vg4Kt4BeuW_OghvS_HOCk7-Od3tPnpa9MVuHhcYCrzF8qdimklTvJmpJ2KFGaGle3z2C939iqa9MwlNkDdLSwK7kyYX2C5cqPxNrwyALOXKXOyzuswHSrwE0AXSopv2bsC8mzADsFf0-o6pXG9DoWGE4Z4FxyvQ5NurhNrZQOj-ELt7U-qo014Bw";
+                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoieHRQMmx0Sjc0LVNzZ1ZSQkFZS0tPZyIsIm5iZiI6MTY5NDA3MjIwNCwiaWF0IjoxNjk0MDcyNTA0LCJleHAiOjE2OTQwNzYxMDQsImp0aSI6IjM3MTgzZDIwYjlmYzZjYzVkMDk0NmY4YjZlOWYyZDI1NDEyMTc5YTEifQ.M7Q3hw--d8IpQ00fmn7IvgQzLGMsWpQxmXojq91MHgDaPbw-82AUt1luguqwKuI8bg6Yg5wxyaOi3KyioQEKsuR3Dyscn9B4l4w1osEw0ntRymtibNn8hd9ce62_krJHGd46a1kFXndV5AqPPuNlEfa5PD0bEGy1rj7RogGSSjOSbRrS2bEwUWQR8bKj6Ds44M1T-xcl9B-Z2fy9E3zfz5HUxGfAbgLp68vUb7MDe0nVVuZAc6ojdOL3Xh-LWfW8qIjmwqYywOrRowhqwmgWs2icfL5aJVyMPvAJvk01x8piFdqVNT_BbkbgmHqFr0S9kq-zaUZ3PzGB_HcNKDB1xg";
                             jQuery.ajax({
                                     url: API_URL,
                                     cache: false,
