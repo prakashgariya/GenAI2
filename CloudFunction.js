@@ -6,7 +6,7 @@
     <style>
     .textarea {
         width:100%;
-        height:460px;
+        height:480px;
     }
     .img {
         display: block;
