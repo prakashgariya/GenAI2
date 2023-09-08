@@ -21,7 +21,7 @@
         color: #0088ff;
         border-bottom-style: solid !important;
         margin-bottom: unset !important;
-        margin-top: unset !important;
+        margin-top: 7px !important;
     }
     .bulbIcon{
         background: url(https://prakashgariya.github.io/GenAI_Exp/Bulb_Trans.png);
