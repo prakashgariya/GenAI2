@@ -12,7 +12,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 50px !important;
+        margin-top: 100px !important;
     }
     .img:hover {
         transform: scale(0.9) !important;
@@ -80,7 +80,7 @@
         }
 
         _onButtonClick(event) {
-            let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiS1ltbzBhZFpWWTF3LWJUYTJ5YnhIQSIsIm5iZiI6MTY5NDE3ODc3MCwiaWF0IjoxNjk0MTc5MDcwLCJleHAiOjE2OTQxODI2NzAsImp0aSI6ImIwZmM4ZTE3ZjU1OGIxMTNkYzhhMzE1ZWViZGI2Y2E2ZjI1ZjYzNmQifQ.aLtl_oc9MesYIUNCJHVqDdxne7_RkaV0nudNVrYM5ngave63b4DoHKCmg3maFgHmYnKR1ZksbtyCSCK_vb1_ejJxG2tEnfLHEJdHhBghSJwMWIgudRe8-Wn6XeQek9N89jlNIERblEe_yMaF0VAzrrSk6DdWVJAke6PNSuppF-ISqYE5hY2ow7VLCN7ApHnrbF9_BWFjpnybJabsixLl4Jb8B9mR4-tsBox0tYgd9m4jbrnLpoux34n78ypbiQY6A0nfNkeehxEJsLKSURwWmIfPYPAm70JGG3WtlL5_s9B8mrql8hzUV8dzqtRVwPc1A3qsczxvzAwBwqdIrI5JKg";
+            let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoidWplRWh0T2Y0anBvMW44dHo5ejEzZyIsIm5iZiI6MTY5NDE4OTU1MCwiaWF0IjoxNjk0MTg5ODUwLCJleHAiOjE2OTQxOTM0NTAsImp0aSI6Ijg4MmEzNjI5YjEwMTFjZGFmZWZiZTUxMWE0OTM5MTljYjIwM2FkYzgifQ.STRY6sA8CuxcoUPvCqe67FMYjm_oL-0VjBk_dc5GYBQjyL-DAo6_cdHjL6KmIGOpvoeTtgqYJ4YXB0Jp5kM2DSw8pehf6iqJlBxFhjes1lm1DXgWXMrv7AB0G2QeEqbiBexSZ2nfEiebW-ujSPs4MSISLh9b69MdxZZ2b6wWXhz6zSWcO7CGs0lCKBVeKcO4i5UD3zAlYbwAc8BehcDON43q85oWoqhKegOhy3Hb34OF2Zn07Rm2HoPxfmlB7VSyRc6HjaTLt-oBKyybBnb1D7pl8Am22AHXHKhD8p0VXID3GhRYQS3sZFrBNH3Xxa91SlD0e1OA_o5g5kDH5paHAA";
             var textArea = this.shadowRoot.getElementById('textArea');
             textArea.value = "Fetching Insights from Open AI LLM......";
             var image = this.shadowRoot.getElementById('image');
