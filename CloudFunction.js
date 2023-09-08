@@ -18,16 +18,6 @@
     .img:hover {
         transform: scale(0.9) !important;
     }
-    h3 {
-        color: white;
-        border-bottom-style: solid !important;
-        margin-bottom: unset !important;
-        margin-top: 0px !important;
-        background-color: #9ddd58;
-        border-bottom-color: #9ddd58;
-        border-top-color: #9ddd58;
-        height: 29px;
-    }
     .bulbIcon{
         background: url(https://prakashgariya.github.io/GenAI_Exp/Bulb_Trans.png);
         height: auto;
@@ -36,13 +26,22 @@
     }
     </style>
     <div>
-    <h3><i class="bulbIcon"></i>&nbsp&nbsp&nbsp&nbspInsights</h3>
-    <img id="image" class="img" src="https://prakashgariya.github.io/GenAI_Exp/VishalKrish.png" alt="Finance Analyst" width="292px" height="300px"/>
+    <img id="image" class="img" src="https://prakashgariya.github.io/GenAI_Exp/VishalKrish.png" alt="Finance Analyst" width="200px" height="250px"/>
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
 //Previous Code
 //Style
+// h2 {
+//     color: white;
+//     border-bottom-style: solid !important;
+//     margin-bottom: unset !important;
+//     margin-top: 0px !important;
+//     background-color: #9ddd58;
+//     border-bottom-color: #9ddd58;
+//     border-top-color: #9ddd58;
+//     height: 30px;
+// }
 // h2{
 //     color: #0088ff;
 //     border-bottom-style: solid !important;
@@ -65,6 +64,7 @@
 //HTML
 //<button class="button">Generate Insights</button>
 //<img id="image" class="img" src="https://prakashgariya.github.io/GenAI_Exp/VishalKrish.png" alt="Finance Analyst" width="200px" height="450px"/>
+//<h2><i class="bulbIcon"></i>&nbsp&nbsp&nbsp&nbspInsights</h2>
 
     class CloudFunction extends HTMLElement {
         constructor() {
