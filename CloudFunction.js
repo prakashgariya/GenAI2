@@ -6,7 +6,7 @@
     <style>
     .textarea {
         width:100%;
-        height:500px;
+        height:460px;
     }
     .img {
         display: block;
@@ -25,7 +25,7 @@
     }
     </style>
     <div>
-    <img id="image" class="img" src="https://prakashgariya.github.io/GenAI_Exp/VishalKrish.png" alt="Finance Analyst" width="200px" height="250px"/>
+    <img id="image" class="img" src="https://prakashgariya.github.io/GenAI_Exp/VishalKrish.png" alt="Finance Analyst" width="150px" height="175px"/>
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
