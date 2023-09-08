@@ -21,7 +21,7 @@
                 <!-- use our custom control, see below -->
                 <fd:Headline id="botchat"
                                         title="Ask Me"
-                                        height="600px"
+                                        height="500px"
                                         width="350px"
                                         showCloseButton="true"
                                         send="onSendPressed"
