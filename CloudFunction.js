@@ -12,6 +12,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 50px !important;
     }
     .img:hover {
         transform: scale(0.9) !important;
