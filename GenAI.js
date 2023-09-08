@@ -596,7 +596,7 @@
                         } 
                         else {
                             const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
-                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiRnJkMWtwTVZKSm8zcGxiQ2xBLUhXUSIsIm5iZiI6MTY5NDE2OTg2MCwiaWF0IjoxNjk0MTcwMTYwLCJleHAiOjE2OTQxNzM3NjAsImp0aSI6IjE1MDJlMDdjNWU2MTFiMjM5YTY1Mzk5YzVmMDk0NzA2YjRlNzA0YWYifQ.GxJS8Egdn_23PBUqRvnzd-4qMizy5LcIScUXeUeJQUcewYSPCjqXaIy8rEzushHfE56AOMocj-wUK4l8r0jBJxr4JDKrBky87CXLreO3JAZJkvBba7AD-8Br9U48QNqPCiHujGHH7wbE86FdfTqxAR9Fv9A3j7Czza5Ld8W5vNYk46_NsYJaJN1RRacdntIhe7Gsjugdxh6yUqxwRmv_sh2w0-kHNxsCYDx-AIpnyPFpoc2SRN7akn7uZvbI8RROw_v4wtSGJp8q7ieV90zLAuT49mHKDTmDEJMSyHikaq9eSY8RRd_3a34lw0Jw43_MXCgzzWXea5tviba_aekqOQ";
+                            const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiSlNyN1VINFhHdGNoS18ybUFINUdrdyIsIm5iZiI6MTY5NDE3NTIyOSwiaWF0IjoxNjk0MTc1NTI5LCJleHAiOjE2OTQxNzkxMjksImp0aSI6ImY0OTdjZDI3MzI0MWUyMzNlYTAyNTRjYzEwN2Q5OTRhYzlkN2Y5YTQifQ.H5hOpG7Tvj0737hH8LL1cmJPYbJ-iwA1bUFuwqFnxVYfcYiMXLl_OqBZ4hoTx50C6uEmVzY1uPaX3bPaecQvdvstp_HGcdxmHJQYxuhfVF6SSigFiODHFyqfqwbY4qNCNLYWBCkfb0YFvCt8MpJg1sP_vvpm9iGqALanfB7Pwj-iR42WABfTWI9Ll5luM8hPeIxnP33B5ThIVr-jWooqQsWwya4Y7ELGyZhBVAwFgBKHy7haAytsAXh8dmhplWEQ_tl6ghF9BsZzvrMwRtOChLY69elixpbqNDvBv0CvlAvqT0oiWvo1W0RND-SLNLtVxeDjjnuffFX2-VRLDyRddw";
                             jQuery.ajax({
                                     url: API_URL,
                                     cache: false,
@@ -609,6 +609,7 @@
                                     async: true,
                                     success: function(sData) {
                                        // const data = sData.json();
+                                        var response = sData;
                                         chatbot.addChatItem(sData, false);
                                         chatbot.botFinishTyping();
                                         //localStorage.setItem("chatId", sData.id);
