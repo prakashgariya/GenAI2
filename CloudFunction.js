@@ -15,6 +15,7 @@
         cursor: pointer;
         width:100%;
         height: 32px;
+        margin-top: 2px;
     }
     .textarea {
         width:100%;
