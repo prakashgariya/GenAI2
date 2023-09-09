@@ -23,8 +23,8 @@
     }
     </style>
     <div>
-    <button class="button">Insights</button>
-    <textarea id="textArea" name="textArea" class="textarea">click insights button to get the latest insights provided by your Gen AI agent</textarea>
+    <button class="button">Generate Insights</button>
+    <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
 //Previous Code
