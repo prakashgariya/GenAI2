@@ -115,8 +115,12 @@
                 crossDomain: true,
                 error: function (err) {
                     console.log("Error");
-                    // textArea.value = err.responseText;
-                    txt = err.responseText;
+                    textArea.value = err.responseText;
+                },
+                success: function (data, textStatus) {
+                    console.log("Success");
+                    // textArea.value = data;
+                    txt = data;
                     _setTypeWriterEffect();
                     function _setTypeWriterEffect(){
                         if(i < txt.length){
@@ -125,10 +129,6 @@
                             setTimeout(_setTypeWriterEffect, speed);
                         }
                     }
-                },
-                success: function (data, textStatus) {
-                    console.log("Success");
-                    textArea.value = data;
                 }
             });
         }
