@@ -119,7 +119,7 @@
                 },
                 success: function (data, textStatus) {
                     console.log("Success");
-                    // textArea.value = data;
+                    textArea.value = "";
                     txt = data;
                     _setTypeWriterEffect();
                     function _setTypeWriterEffect(){
