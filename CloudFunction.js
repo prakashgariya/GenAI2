@@ -107,7 +107,7 @@
             var i=0, txt = "",speed = 50;
             jQuery.ajax({
                 // url: "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger",
-                url: "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/",
+                url: "<https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/>",
                 type: "GET",
                 crossDomain: true,
                 // beforeSend: function (xhr) {
