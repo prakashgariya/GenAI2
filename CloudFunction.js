@@ -30,7 +30,7 @@
         display: none;
         position: absolute;
         background-color: #f1f1f1;
-        width: 100 %;
+        width: 100%;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
       }
@@ -39,6 +39,7 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        width: 100%;
     }
     .dropdown-content a:hover {background-color: #ddd;}
     .dropdown:hover .dropdown-content {display: block;}
