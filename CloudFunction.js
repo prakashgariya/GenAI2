@@ -118,7 +118,8 @@
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
              let aTagList = this._shadowRoot.querySelectorAll('a');
              for(let i in aTagList){
-                aTagList[i].addEventListener('click', this._onButtonClick.bind(aTagList[i].getInnerHTML()));
+                 if(typeof(aTagList[i]) == 'object')
+                    aTagList[i].addEventListener('click', this._onButtonClick.bind(this));
              }
 
             //this._image = this._shadowRoot.getElementById('image')
@@ -129,6 +130,7 @@
 
         _onButtonClick(driver) {
             console.log(driver)
+            var selectedOption = driver.target.innerText;
             // let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjMGI2OTEzZmUxMzgyMGEzMzMzOTlhY2U0MjZlNzA1MzVhOWEwYmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNmJ2SFl2M1RuMjVaMmRFWWdBM1FZZyIsIm5iZiI6MTY5NTAzODQxMywiaWF0IjoxNjk1MDM4NzEzLCJleHAiOjE2OTUwNDIzMTMsImp0aSI6ImVmYjg4ZDQxMmY5M2Q2ZmFkNjk2MjMyNzYwNDI2MTk5NmU2Yzg3ZTIifQ.AH2JD9Gm4GglWfqXonLhj3PFzxD9RxpOpUHr-v9qsGhtX-mOvfleFAt65Xd4-yb-6p6LdjnvAcONEMcm-8_jc8H0xecOZ5lkHtA4hspYn1T58GreFFWP9zcZBl3fecoFPeuZVzo0--OyrjFYS9NYhlSjpi36RkerR3UpN5dW6UFEbL-BDt5-BXbqpChdL07aoOiweElY9bAfujJXizrZiXLiL0J86QNVo4EFTZQe3VpE3JxNXfk7qAYjhw1hOohOQexr0FivnJAl46WIsdZyyBvBmiXIsdmiPQwoCjMrUUlWj5HcvwQRnAn7CfF3FuUsmUKslr6j0SA3_0GbJmWqCA";
             var textArea = this.shadowRoot.getElementById('textArea');
             textArea.value = "Fetching Insights from Open AI LLM......";
