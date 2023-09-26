@@ -24,6 +24,7 @@
     .dropdown {
         position: relative;
         display: inline-block;
+        width:100%;
     }
     .dropdown-content {
         display: none;
@@ -47,9 +48,9 @@
         <div class="dropdown">
             <button class="button">Generate Insights</button>
                 <div class="dropdown-content">
-                    <a href="#" onclick="_onButtonClick('economic')">Economic scenario</a>
-                    <a href="#" onclick="_onButtonClick('promotion')">Promotion</a>
-                    <a href="#" onclick="_onButtonClick('season')">Seasonality</a>
+                    <a onclick="_onButtonClick('economic')">Economic scenario</a>
+                    <a onclick="_onButtonClick('promotion')">Promotion</a>
+                    <a href="javascript:void(0);" onclick="_onButtonClick('season')">Seasonality</a>
                 </div>
         </div>    
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
