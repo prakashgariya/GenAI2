@@ -30,7 +30,7 @@
         display: none;
         position: absolute;
         background-color: #f1f1f1;
-        min-width: 160px;
+        width: 100 %;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
       }
@@ -114,8 +114,13 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-            this._button = this._shadowRoot.querySelector('button');
-            this._button.addEventListener('click', this._onButtonClick.bind(this));
+            // this._button = this._shadowRoot.querySelector('button');
+            // this._button.addEventListener('click', this._onButtonClick.bind(this));
+             let aTagList = this._shadowRoot.querySelectorAll('a');
+             for(let i in aTagList){
+                aTagList[i].addEventListener('click', this._onButtonClick.bind(aTagList[i].getInnerHTML()));
+             }
+
             //this._image = this._shadowRoot.getElementById('image')
             //this._image.addEventListener('click', this._onButtonClick.bind(this));
 
