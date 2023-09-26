@@ -21,6 +21,10 @@
         height:480px;
         margin-top: 2px !important;
     }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
     .dropdown-content {
         display: none;
         position: absolute;
@@ -29,23 +33,25 @@
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
       }
-      
-      .dropdown-content a {
+    .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-      }
-      .dropdown-content a:hover {background-color: #ddd;}
-      .button:hover .dropdown-content {display: block;}
+    }
+    .dropdown-content a:hover {background-color: #ddd;}
+    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .button {background-color: #3e8e41;}
     </style>
     <div>
-    <button class="button">Generate Insights</button>
-        <div class="dropdown-content">
-            <a href="#" onclick="_onButtonClick('economic')">Economic scenario</a>
-            <a href="#" onclick="_onButtonClick('promotion')">Promotion</a>
-            <a href="#" onclick="_onButtonClick('season')">Seasonality</a>
-        </div>
+        <div class="dropdown">
+            <button class="button">Generate Insights</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="_onButtonClick('economic')">Economic scenario</a>
+                    <a href="#" onclick="_onButtonClick('promotion')">Promotion</a>
+                    <a href="#" onclick="_onButtonClick('season')">Seasonality</a>
+                </div>
+        </div>    
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
