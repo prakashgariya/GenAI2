@@ -39,7 +39,6 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-        width: 100%;
     }
     .dropdown-content a:hover {background-color: #ddd;}
     .dropdown:hover .dropdown-content {display: block;}
@@ -49,14 +48,14 @@
         <div class="dropdown">
             <button class="button">Generate Insights</button>
                 <div class="dropdown-content">
-                    <a onclick="_onButtonClick('economic')">Economic scenario</a>
-                    <a onclick="_onButtonClick('promotion')">Promotion</a>
-                    <a href="javascript:void(0);" onclick="_onButtonClick('season')">Seasonality</a>
+                    <a onclick="_onButtonClick('summary')">Concise</a>
+                    <a onclick="_onButtonClick('expanded')">Expanded</a>
                 </div>
         </div>    
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
+    //<a onclick="_onButtonClick('season')">Seasonality</a>
     //Previous Code
     //Style
     // .button {
