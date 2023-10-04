@@ -45,8 +45,9 @@
     .dropdown:hover .button {background-color: #3e8e41;}
     </style>
     <div>
+        <button class="button">Insights</button>
         <div class="dropdown">
-            <button class="button">Generate Insights</button>
+            <button class="button">Expanded</button>
                 <div class="dropdown-content">
                     <a onclick="_onButtonClick('summary')">Concise</a>
                     <a onclick="_onButtonClick('expanded')">Expanded</a>
