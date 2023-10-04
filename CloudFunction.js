@@ -4,6 +4,10 @@
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
+    .insightsButton{
+        display: inline-block;
+        width:50%;
+    }
     .button {
         background-color: #9ddd58 !important;
         border: none;
@@ -24,7 +28,8 @@
     .dropdown {
         position: relative;
         display: inline-block;
-        width:100%;
+        width:50%;
+        float:right;
     }
     .dropdown-content {
         display: none;
@@ -45,9 +50,11 @@
     .dropdown:hover .button {background-color: #3e8e41;}
     </style>
     <div>
-        <button class="button">Insights</button>
+        <div class="insightsButton">
+            <button class="button">Insights</button>
+        </div>
         <div class="dropdown">
-            <button class="button">Expanded</button>
+            <button class="button" id="idButtonInsightsType">Expanded</button>
                 <div class="dropdown-content">
                     <a onclick="_onButtonClick('summary')">Concise</a>
                     <a onclick="_onButtonClick('expanded')">Expanded</a>
@@ -115,12 +122,19 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-            // this._button = this._shadowRoot.querySelector('button');
+            let buttonList = this._shadowRoot.querySelectorAll('button');
+            for(let i in buttonList){
+                if(typeof(buttonList[i]) == 'object')
+                    if(buttonList[i].innerText == 'Insights')
+                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+                    
+            }
+
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
              let aTagList = this._shadowRoot.querySelectorAll('a');
              for(let i in aTagList){
                  if(typeof(aTagList[i]) == 'object')
-                    aTagList[i].addEventListener('click', this._onButtonClick.bind(this));
+                    aTagList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
              }
 
             this._insightStatus = "";
@@ -130,9 +144,13 @@
             //this._shadowRoot.querySelector('textArea').hidden = true;
         }
 
+        _onButtonClickDropdown(driver){
+            var selectedOption = driver.target.innerText;
+            var insightsButton = this.shadowRoot.getElementById('idButtonInsightsType');
+        }
+
         _onButtonClick(driver) {
             console.log(driver)
-            var selectedOption = driver.target.innerText;
             // let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjMGI2OTEzZmUxMzgyMGEzMzMzOTlhY2U0MjZlNzA1MzVhOWEwYmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNmJ2SFl2M1RuMjVaMmRFWWdBM1FZZyIsIm5iZiI6MTY5NTAzODQxMywiaWF0IjoxNjk1MDM4NzEzLCJleHAiOjE2OTUwNDIzMTMsImp0aSI6ImVmYjg4ZDQxMmY5M2Q2ZmFkNjk2MjMyNzYwNDI2MTk5NmU2Yzg3ZTIifQ.AH2JD9Gm4GglWfqXonLhj3PFzxD9RxpOpUHr-v9qsGhtX-mOvfleFAt65Xd4-yb-6p6LdjnvAcONEMcm-8_jc8H0xecOZ5lkHtA4hspYn1T58GreFFWP9zcZBl3fecoFPeuZVzo0--OyrjFYS9NYhlSjpi36RkerR3UpN5dW6UFEbL-BDt5-BXbqpChdL07aoOiweElY9bAfujJXizrZiXLiL0J86QNVo4EFTZQe3VpE3JxNXfk7qAYjhw1hOohOQexr0FivnJAl46WIsdZyyBvBmiXIsdmiPQwoCjMrUUlWj5HcvwQRnAn7CfF3FuUsmUKslr6j0SA3_0GbJmWqCA";
             var textArea = this.shadowRoot.getElementById('textArea');
             textArea.value = "Fetching Insights from Open AI LLM......";
