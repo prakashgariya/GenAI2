@@ -8,14 +8,20 @@
         display: inline-block;
         width:50%;
     }
-    .button {
+    .buttonWithBlue {
+        background-color: rgb(0, 151, 169) !important;
+    }
+    .buttonWithGreen {
+        border-right-style: solid;
         background-color: #9ddd58 !important;
+    }
+    .button {
         border: none;
         color: white;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 18px;
         cursor: pointer;
         width:100%;
         height: 32px;
@@ -51,10 +57,10 @@
     </style>
     <div>
         <div class="insightsButton">
-            <button class="button">Insights</button>
+            <button class="button buttonWithGreen">Insights</button>
         </div>
         <div class="dropdown">
-            <button class="button" id="idButtonInsightsType">Expanded</button>
+            <button class="button buttonWithBlue" id="idButtonInsightsType">Expanded</button>
                 <div class="dropdown-content">
                     <a onclick="_onButtonClick('summary')">Concise</a>
                     <a onclick="_onButtonClick('expanded')">Expanded</a>
