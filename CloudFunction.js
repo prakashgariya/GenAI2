@@ -7,7 +7,6 @@
     .insightsButton{
         display: inline-block;
         width:50%;
-        border-right-style:solid;
     }
     .button {
         background-color: #9ddd58 !important;
