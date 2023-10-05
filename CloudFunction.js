@@ -18,6 +18,9 @@
         border-right-style: solid;
         background-color: #9ddd58 !important;
     }
+    .buttonWithGreen:hover {
+        background-color: rgb(0, 151, 169) !important;
+    }
     .button {
         border: none;
         color: white;
