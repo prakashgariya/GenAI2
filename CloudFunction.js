@@ -11,6 +11,9 @@
     .buttonWithBlue {
         background-color: rgb(0, 151, 169) !important;
     }
+    .buttonWithBlue:hover {
+        background-color: #9ddd58 !important;
+    }
     .buttonWithGreen {
         border-right-style: solid;
         background-color: #9ddd58 !important;
@@ -61,14 +64,14 @@
         </div>
         <div class="dropdown">
             <button class="button buttonWithBlue" id="idButtonInsightsType">Expanded</button>
-                <div class="dropdown-content">
-                    <a onclick="_onButtonClick('summary')">Concise</a>
-                    <a onclick="_onButtonClick('expanded')">Expanded</a>
-                </div>
         </div>    
     <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
+    // <div class="dropdown-content">
+    //     <a onclick="_onButtonClick('summary')">Concise</a>
+    //     <a onclick="_onButtonClick('expanded')">Expanded</a>
+    //</div>
     //<a onclick="_onButtonClick('season')">Seasonality</a>
     //Previous Code
     //Style
@@ -130,18 +133,21 @@
 
             let buttonList = this._shadowRoot.querySelectorAll('button');
             for(let i in buttonList){
-                if(typeof(buttonList[i]) == 'object')
+                if(typeof(buttonList[i]) == 'object'){
                     if(buttonList[i].innerText == 'Insights')
                         buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
-                    
+                    else if(buttonList[i].innerText == 'Expanded')
+                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+                        // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
+                }    
             }
 
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
-             let aTagList = this._shadowRoot.querySelectorAll('a');
-             for(let i in aTagList){
-                 if(typeof(aTagList[i]) == 'object')
-                    aTagList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
-             }
+            //  let aTagList = this._shadowRoot.querySelectorAll('a');
+            //  for(let i in aTagList){
+            //      if(typeof(aTagList[i]) == 'object')
+            //         aTagList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
+            //  }
 
             this._insightStatus = "";
             //this._image = this._shadowRoot.getElementById('image')
@@ -151,12 +157,26 @@
         }
 
         _onButtonClickDropdown(driver){
-            var selectedOption = driver.target.innerText;
-            var insightsButton = this.shadowRoot.getElementById('idButtonInsightsType');
+            if(driver.target.innerText == "Expanded"){
+                
+            }
         }
 
         _onButtonClick(driver) {
             console.log(driver)
+            var summaryType = "";
+            var insightsButton = this.shadowRoot.getElementById('idButtonInsightsType');
+            if(driver.target.innerText == "Expanded"){
+                summaryType = "Expanded";
+                insightsButton.innerHTML = "Concise";
+            }else if(driver.target.innerText == "Concise"){
+                summaryType = "Concise";
+                insightsButton.innerHTML = "Expanded";
+            }else if(driver.target.innerText == "Insights"){
+                summaryType = "Concise";
+                insightsButton.innerHTML = "Expanded";
+            }
+            var data = {"type":summaryType};
             // let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjMGI2OTEzZmUxMzgyMGEzMzMzOTlhY2U0MjZlNzA1MzVhOWEwYmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNmJ2SFl2M1RuMjVaMmRFWWdBM1FZZyIsIm5iZiI6MTY5NTAzODQxMywiaWF0IjoxNjk1MDM4NzEzLCJleHAiOjE2OTUwNDIzMTMsImp0aSI6ImVmYjg4ZDQxMmY5M2Q2ZmFkNjk2MjMyNzYwNDI2MTk5NmU2Yzg3ZTIifQ.AH2JD9Gm4GglWfqXonLhj3PFzxD9RxpOpUHr-v9qsGhtX-mOvfleFAt65Xd4-yb-6p6LdjnvAcONEMcm-8_jc8H0xecOZ5lkHtA4hspYn1T58GreFFWP9zcZBl3fecoFPeuZVzo0--OyrjFYS9NYhlSjpi36RkerR3UpN5dW6UFEbL-BDt5-BXbqpChdL07aoOiweElY9bAfujJXizrZiXLiL0J86QNVo4EFTZQe3VpE3JxNXfk7qAYjhw1hOohOQexr0FivnJAl46WIsdZyyBvBmiXIsdmiPQwoCjMrUUlWj5HcvwQRnAn7CfF3FuUsmUKslr6j0SA3_0GbJmWqCA";
             var textArea = this.shadowRoot.getElementById('textArea');
             textArea.value = "Fetching Insights from Open AI LLM......";
@@ -174,6 +194,7 @@
                 url: "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/",
                 type: "GET",
                 crossDomain: true,
+                data: data,
                 // beforeSend: function (xhr) {
                 //     xhr.setRequestHeader('Authorization', 'Bearer ' + sToken);
                 // },
