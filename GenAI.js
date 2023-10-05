@@ -29,7 +29,7 @@
                                         placeHolder="Chat with me"
                                         userIcon="https://prakashgariya.github.io/GenAI2/UserIcon.png"
                                         robotIcon="https://prakashgariya.github.io/GenAI2/ChatBot.png"
-                                        buttonIcon="https://prakashgariya.github.io/GenAI2/AskMe.png">                                        
+                                        buttonIcon="https://prakashgariya.github.io/GenAI2/JustAsk.png">                                        
                     </fd:Headline>                 
             </mvc:View>
         </script>
