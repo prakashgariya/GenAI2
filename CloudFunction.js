@@ -68,7 +68,7 @@
         <div class="dropdown">
             <button class="button buttonWithBlue" id="idButtonInsightsType">Expanded</button>
         </div>    
-    <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
+    <textarea id="textArea" name="textArea" class="textarea">click insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
     // <div class="dropdown-content">
