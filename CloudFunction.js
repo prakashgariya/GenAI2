@@ -6,7 +6,7 @@
     <style>
     .insightsButton{
         display: inline-block;
-        width:50%;
+        width:100%;
     }
     .buttonWithBlue {
         background-color: rgb(0, 151, 169) !important;
@@ -15,7 +15,6 @@
         background-color: #9ddd58 !important;
     }
     .buttonWithGreen {
-        border-right-style: solid;
         background-color: #9ddd58 !important;
     }
     .buttonWithGreen:hover {
@@ -37,40 +36,45 @@
         height:480px;
         margin-top: 2px !important;
     }
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        width:50%;
-        float:right;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-    .dropdown-content a:hover {background-color: #ddd;}
-    .dropdown:hover .dropdown-content {display: block;}
-    .dropdown:hover .button {background-color: #3e8e41;}
     </style>
     <div>
         <div class="insightsButton">
             <button class="button buttonWithGreen">Insights</button>
-        </div>
-        <div class="dropdown">
-            <button class="button buttonWithBlue" id="idButtonInsightsType">Expanded</button>
         </div>    
     <textarea id="textArea" name="textArea" class="textarea">click insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
+    //.buttonWithGreen {
+    //     border-right-style: solid;
+    //     background-color: #9ddd58 !important;
+    // }
+    // .dropdown {
+    //     position: relative;
+    //     display: inline-block;
+    //     width:50%;
+    //     float:right;
+    // }
+    // .dropdown-content {
+    //     display: none;
+    //     position: absolute;
+    //     background-color: #f1f1f1;
+    //     width: 100%;
+    //     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    //     z-index: 1;
+    //   }
+    // .dropdown-content a {
+    //     color: black;
+    //     padding: 12px 16px;
+    //     text-decoration: none;
+    //     display: block;
+    // }
+    // .dropdown-content a:hover {background-color: #ddd;}
+    // .dropdown:hover .dropdown-content {display: block;}
+    // .dropdown:hover .button {background-color: #3e8e41;}
+    // <div class="dropdown">
+    //         <button class="button buttonWithBlue" id="idButtonInsightsType">Expanded</button>
+    // </div>
+
     // <div class="dropdown-content">
     //     <a onclick="_onButtonClick('summary')">Concise</a>
     //     <a onclick="_onButtonClick('expanded')">Expanded</a>
@@ -176,8 +180,8 @@
                 summaryType = "Concise";
                 insightsButton.innerHTML = "Expanded";
             }else if(driver.target.innerText == "Insights"){
-                summaryType = "Concise";
-                insightsButton.innerHTML = "Expanded";
+                summaryType = "General";
+                // insightsButton.innerHTML = "Expanded";
             }
             var data = {"type":summaryType};
             // let sToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjMGI2OTEzZmUxMzgyMGEzMzMzOTlhY2U0MjZlNzA1MzVhOWEwYmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNmJ2SFl2M1RuMjVaMmRFWWdBM1FZZyIsIm5iZiI6MTY5NTAzODQxMywiaWF0IjoxNjk1MDM4NzEzLCJleHAiOjE2OTUwNDIzMTMsImp0aSI6ImVmYjg4ZDQxMmY5M2Q2ZmFkNjk2MjMyNzYwNDI2MTk5NmU2Yzg3ZTIifQ.AH2JD9Gm4GglWfqXonLhj3PFzxD9RxpOpUHr-v9qsGhtX-mOvfleFAt65Xd4-yb-6p6LdjnvAcONEMcm-8_jc8H0xecOZ5lkHtA4hspYn1T58GreFFWP9zcZBl3fecoFPeuZVzo0--OyrjFYS9NYhlSjpi36RkerR3UpN5dW6UFEbL-BDt5-BXbqpChdL07aoOiweElY9bAfujJXizrZiXLiL0J86QNVo4EFTZQe3VpE3JxNXfk7qAYjhw1hOohOQexr0FivnJAl46WIsdZyyBvBmiXIsdmiPQwoCjMrUUlWj5HcvwQRnAn7CfF3FuUsmUKslr6j0SA3_0GbJmWqCA";
