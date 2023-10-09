@@ -1,6 +1,4 @@
 (function () {
-
-    const jQueryScript = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
