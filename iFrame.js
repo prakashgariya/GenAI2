@@ -4,7 +4,7 @@
     <style>
     </style>
     <iframe
-      src="https://deloitteconsulting.cloud.looker.com/embed/dashboards/1?allow_login_screen=true"
+      src="https://openai.com/blog/openai-codex"
       width="1000"
       height="2000"
       frameborder="0">
