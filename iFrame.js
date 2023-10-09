@@ -4,7 +4,7 @@
     <style>
     </style>
     <iframe
-      src="https://openai.com/blog/openai-codex"
+      src="https://www.w3schools.com"
       width="1000"
       height="2000"
       frameborder="0">
