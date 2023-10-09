@@ -39,9 +39,9 @@
     </style>
     <div>
         <div class="insightsButton">
-            <button class="button buttonWithGreen">Insights</button>
+            <button class="button buttonWithGreen">Generate Insights</button>
         </div>    
-    <textarea id="textArea" name="textArea" class="textarea">click insights to get the latest insights provided by your Gen AI agent</textarea>
+    <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
     //.buttonWithGreen {
@@ -141,7 +141,7 @@
             let buttonList = this._shadowRoot.querySelectorAll('button');
             for(let i in buttonList){
                 if(typeof(buttonList[i]) == 'object'){
-                    if(buttonList[i].innerText == 'Insights')
+                    if(buttonList[i].innerText == 'Generate Insights')
                         buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
                     else if(buttonList[i].innerText == 'Expanded')
                         buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
@@ -179,7 +179,7 @@
             }else if(driver.target.innerText == "Concise"){
                 summaryType = "Concise";
                 insightsButton.innerHTML = "Expanded";
-            }else if(driver.target.innerText == "Insights"){
+            }else if(driver.target.innerText == "Generate Insights"){
                 summaryType = "General";
                 // insightsButton.innerHTML = "Expanded";
             }
