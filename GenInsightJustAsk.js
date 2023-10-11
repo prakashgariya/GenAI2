@@ -33,7 +33,7 @@
     }
     .textarea {
         width:100%;
-        height:700px;
+        height:684px;
         margin-top: 2px !important;
     }
     </style>        
