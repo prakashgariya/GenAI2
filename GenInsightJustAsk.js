@@ -33,10 +33,10 @@
     }
     .textarea {
         width:100%;
-        height:600px;
+        height:700px;
         margin-top: 2px !important;
     }
-    </style>
+    </style>        
     <div>
         <div class="insightsButton">
             <button class="button buttonWithGreen">Generate Insights</button>
