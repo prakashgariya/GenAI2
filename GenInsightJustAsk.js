@@ -45,7 +45,7 @@
     </div>
     `;
 
-    class CloudFunction extends HTMLElement {
+    class InsightsJustAsk extends HTMLElement {
         constructor() {
             super();
             this._shadowRoot = this.attachShadow({ mode: "open" });
@@ -110,5 +110,5 @@
         }
     }
 
-    customElements.define('sac-cloudfunction', CloudFunction);
+    customElements.define('sac-insightjustask', InsightsJustAsk);
 })();
