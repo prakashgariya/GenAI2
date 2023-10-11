@@ -4,7 +4,7 @@
     <style>
     </style>
     <iframe
-      src="https://fpa40-orcamaster-justask-xsc.master.canary.eu10.projectorca.cloud/sap/fpa/ui/app.html#/home"
+      src="https://fpa40-orcamaster-justask-xsc.master.canary.eu10.projectorca.cloud/sap/fpa/ui/app.html#/mobilechartrenderer?shellMode=embed"
       width="1000"
       height="2000"
       frameborder="0">
