@@ -12,10 +12,10 @@
         background-color: rgb(0, 151, 169) !important;
     }
     .buttonWithBlue:hover {
-        background-color: #9ddd58 !important;
+        background-color: #92D050 !important;
     }
     .buttonWithGreen {
-        background-color: #9ddd58 !important;
+        background-color: #92D050 !important;
     }
     .buttonWithGreen:hover {
         background-color: rgb(0, 151, 169) !important;
@@ -41,7 +41,7 @@
         <div class="insightsButton">
             <button class="button buttonWithGreen">Generate Insights</button>
         </div>    
-    <textarea id="textArea" name="textArea" class="textarea">click generate insights to get the latest insights provided by your Gen AI agent</textarea>
+    <textarea id="textArea" name="textArea" class="textarea">Click Generate Insights to get the latest insights provided by your Gen AI agent</textarea>
     </div>
     `;
 
