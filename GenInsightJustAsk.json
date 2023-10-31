@@ -1,0 +1,36 @@
+{
+    "id": "genInsightJustAsk",
+    "version": "1.0.0",
+    "name": "Gen Insights Just Ask",
+    "description": "Gen Insights Just Ask",
+    "newInstancePrefix": "genInsightJustAsk",
+    "icon":"",
+    "vendor": "Deloitte",
+	"eula": "",
+	"license": "",
+    "webcomponents": [
+		{
+			"kind": "main",
+			"tag": "sac-insightjustask",
+			"url": "https://prakashgariya.github.io/GenAI2/GenInsightJustAsk.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}],
+    "properties":{
+        "width":{
+            "type": "integer",
+            "default": 180
+        },
+        "height":{
+            "type": "integer",
+            "default": 600
+        }
+    },
+    "methods":{
+
+    },
+    "events":{
+
+    }
+
+}

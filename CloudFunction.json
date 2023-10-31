@@ -1,0 +1,36 @@
+{
+    "id": "cloudfunction",
+    "version": "1.0.0",
+    "name": "Cloud Function",
+    "description": "Cloud Function",
+    "newInstancePrefix": "CloudFunction",
+    "icon":"",
+    "vendor": "Deloitte",
+	"eula": "",
+	"license": "",
+    "webcomponents": [
+		{
+			"kind": "main",
+			"tag": "sac-cloudfunction",
+			"url": "https://prakashgariya.github.io/GenAI2/CloudFunction.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}],
+    "properties":{
+        "width":{
+            "type": "integer",
+            "default": 180
+        },
+        "height":{
+            "type": "integer",
+            "default": 300
+        }
+    },
+    "methods":{
+
+    },
+    "events":{
+
+    }
+
+}
