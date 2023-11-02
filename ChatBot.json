@@ -1,0 +1,36 @@
+{
+    "id": "chatbot",
+    "version": "1.0.0",
+    "name": "Chabot SAP AI",
+    "description": "Chabot SAP AI",
+    "newInstancePrefix": "chatbot",
+    "icon":"",
+    "vendor": "Deloitte",
+	"eula": "",
+	"license": "",
+    "webcomponents": [
+		{
+			"kind": "main",
+			"tag": "sac-chatbot",
+			"url": "https://prakashgariya.github.io/GenAI2/ChatBot.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}],
+    "properties":{
+        "width":{
+            "type": "integer",
+            "default": 300
+        },
+        "height":{
+            "type": "integer",
+            "default": 500
+        }
+    },
+    "methods":{
+
+    },
+    "events":{
+
+    }
+
+}
