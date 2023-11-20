@@ -794,7 +794,6 @@
             type: "GET",
             crossDomain: true,
             data: data,
-            crossDomain: true,
             error: function (err) {
                 console.log("Error");
             },
