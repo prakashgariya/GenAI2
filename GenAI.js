@@ -249,6 +249,23 @@
                 results: resultSet
             };
 
+            var dataToSend = JSON.stringify(jsonContent);
+        var data = {"dataString":dataToSend};
+
+        jQuery.ajax({
+            url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+            type: "GET",
+            crossDomain: true,
+            data: data,
+            error: function (err) {
+                console.log("Error");
+            },
+            success: function (data, textStatus) {
+                console.log("Success");
+                console.log(data)
+            }
+        });
+
         }
 
     }
