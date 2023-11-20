@@ -743,4 +743,48 @@
             shadowRoot.appendChild(script)
         });
     }
+
+    async function getSACDashDetails1(title, chart){
+        const resultSet = await chart.getDataSource().getResultSet();
+        let keys = Object.keys(resultSet[0]);
+        let dimensions = keys.filter(key => !key.startsWith('@'));
+        const uniqueMeasureDimensions = [];
+
+        resultSet.forEach(item => {
+            const measureDimensionId = item["@MeasureDimension"].id;
+
+            if (!uniqueMeasureDimensions.includes(measureDimensionId)) {
+                uniqueMeasureDimensions.push(measureDimensionId);
+            }
+        });
+
+        //uniqueMeasureDimensions;
+
+        const uniqueValues = {};
+
+        resultSet.forEach(item => {
+            Object.keys(item).forEach(key => {
+                const value = item[key].id;
+
+                if (!uniqueValues[key]) {
+                    uniqueValues[key] = [value];
+                } else if (!uniqueValues[key].includes(value)) {
+                    uniqueValues[key].push(value);
+                }
+            });
+        });
+
+        var currentTimeInISO = new Date().toISOString();
+        const fileName = title;
+
+        const jsonContent = {
+            title: fileName,
+            createdAt: currentTimeInISO,
+            dimensions: dimensions,
+            measures: uniqueMeasureDimensions,
+            filters: uniqueValues,
+            results: resultSet
+        };
+
+    }
 })();
