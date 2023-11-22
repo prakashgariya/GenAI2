@@ -207,6 +207,14 @@
             }
         }
 
+        async getSACDashDetailsTble(title, table){
+            if(this.sacData === undefined){
+                this.sacData = []
+            }
+            const resultSet1 = await table.getDataSource().getResultSet();
+            this.sacData.push(resultSet1)
+        }
+
         async getSACDashDetails(title, chart){
             const resultSet = await chart.getDataSource().getResultSet();
             let keys = Object.keys(resultSet[0]);
@@ -248,6 +256,9 @@
                 filters: uniqueValues,
                 results: resultSet
             };
+
+            this.sacData = [];
+            this.sacData.push(jsonContent);
 
             var dataToSend = JSON.stringify(jsonContent);
         var data = {"dataString":dataToSend};
