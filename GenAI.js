@@ -218,7 +218,7 @@
                 this.sacData = []
             }
             const resultSet1 = await table.getDataSource().getResultSet();
-            this.sacData.push({type:"Table", content : fetchData(resultSet1)});
+            this.sacData.push({type:"Table", content : fetchData(title,resultSet1)});
 
             var dataToSend1 = JSON.stringify(jsonContent);
             var data1 = {"dataString":dataToSend1};
@@ -240,7 +240,7 @@
 
         async getSACDashDetails(title, chart){
             const resultSet = await chart.getDataSource().getResultSet();
-            var jsonContent = fetchData(resultSet)
+            var jsonContent = fetchData(title,resultSet)
             if(this.sacData === undefined){
                 this.sacData = []
             }
@@ -269,7 +269,7 @@
     customElements.define("sap-sac-genai", GenAI);
 
     // UTILS
-    function fetchData(resultSet){
+    function fetchData(title,resultSet){
         let keys = Object.keys(resultSet[0]);
             let dimensions = keys.filter(key => !key.startsWith('@'));
             const uniqueMeasureDimensions = [];
