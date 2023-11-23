@@ -208,6 +208,12 @@
         }
 
         async getSACDashDetailsTble(title, table){
+            debugger;
+            var aSelections = await table.getSelections();
+            var aDataSelection = await table.getDataSource().getDataSelections();
+            var aData = await table.getDataSource().getData();
+            var aMeasures = await table.getDataSource().getMeasures();
+
             if(this.sacData === undefined){
                 this.sacData = []
             }
