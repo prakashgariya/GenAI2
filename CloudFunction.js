@@ -138,6 +138,17 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
+            this.settings = {};
+            this.settings.format = "CustomFormat";
+            this.addEventListener("click", event => {
+                console.log('click');
+                this.dispatchEvent(new CustomEvent("onStart", {
+                    detail: {
+                        settings: this.settings
+                    }
+                }));
+            });
+
             let buttonList = this._shadowRoot.querySelectorAll('button');
             for(let i in buttonList){
                 if(typeof(buttonList[i]) == 'object'){
@@ -172,14 +183,6 @@
         _onButtonClick(driver) {
             console.log(driver)
 
-            this.settings = {};
-            this.settings.format = "CustomFormat";
-            this.dispatchEvent(new CustomEvent("onStart", {
-                detail: {
-                    settings: this.settings
-                }
-            }));
-            
             var dataToSend = JSON.stringify(this.sacData);
             var aSACData = { "dataString": dataToSend };
 
