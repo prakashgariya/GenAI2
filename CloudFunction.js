@@ -138,15 +138,17 @@
             this._shadowRoot = this.attachShadow({ mode: "open" });
             this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-            this.settings = {};
-            this.settings.format = "CustomFormat";
+            // this.settings = {};
+            // this.settings.format = "CustomFormat";
             this.addEventListener("click", event => {
                 console.log('click');
-                this.dispatchEvent(new CustomEvent("onStart", {
-                    detail: {
-                        settings: this.settings
-                    }
-                }));
+                var event = new Event("onClick");
+                this.dispatchEvent(event);
+                // this.dispatchEvent(new CustomEvent("onStart", {
+                //     detail: {
+                //         settings: this.settings
+                //     }
+                // }));
             });
 
             let buttonList = this._shadowRoot.querySelectorAll('button');
