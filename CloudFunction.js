@@ -172,6 +172,14 @@
         _onButtonClick(driver) {
             console.log(driver)
 
+            this.settings = {};
+            this.settings.format = "CustomFormat";
+            this.dispatchEvent(new CustomEvent("onStart", {
+                detail: {
+                    settings: this.settings
+                }
+            }));
+            
             var dataToSend = JSON.stringify(this.sacData);
             var aSACData = { "dataString": dataToSend };
 
