@@ -208,34 +208,34 @@
         }
 
         async getSACDashDetailsTble(title, table) {
-            debugger;
-            var aSelections = await table.getSelections();
-            var aDataSelection = await table.getDataSource().getDataSelections();
-            var aData = await table.getDataSource().getData();
-            var aMeasures = await table.getDataSource().getMeasures();
+            // var aSelections = await table.getSelections();
+            // var aDataSelection = await table.getDataSource().getDataSelections();
+            // var aData = await table.getDataSource().getData();
+            // var aMeasures = await table.getDataSource().getMeasures();
 
             if (this.sacData === undefined) {
                 this.sacData = []
             }
             const resultSet1 = await table.getDataSource().getResultSet();
-            this.sacData.push({ type: "Table", content: fetchData(title, resultSet1) });
+            var jsonContent1 = fetchData(title, resultSet1)
+            this.sacData.push(jsonContent1);
 
-            var dataToSend1 = JSON.stringify(jsonContent);
-            var data1 = { "dataString": dataToSend1 };
+            // var dataToSend1 = JSON.stringify(jsonContent);
+            // var data1 = { "dataString": dataToSend1 };
 
-            jQuery.ajax({
-                url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
-                type: "GET",
-                crossDomain: true,
-                data: data1,
-                error: function (err) {
-                    console.log("Error");
-                },
-                success: function (data, textStatus) {
-                    console.log("Success");
-                    console.log(data)
-                }
-            });
+            // jQuery.ajax({
+            //     url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+            //     type: "GET",
+            //     crossDomain: true,
+            //     data: data1,
+            //     error: function (err) {
+            //         console.log("Error");
+            //     },
+            //     success: function (data, textStatus) {
+            //         console.log("Success");
+            //         console.log(data)
+            //     }
+            // });
         }
 
         async getSACDashDetails(title, chart) {
@@ -244,24 +244,24 @@
             if (this.sacData === undefined) {
                 this.sacData = []
             }
-            this.sacData.push({ type: "Chart", content: jsonContent });
+            this.sacData.push(jsonContent);
 
             var dataToSend = JSON.stringify(jsonContent);
             var data = { "dataString": dataToSend };
 
-            jQuery.ajax({
-                url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
-                type: "GET",
-                crossDomain: true,
-                data: data,
-                error: function (err) {
-                    console.log("Error");
-                },
-                success: function (data, textStatus) {
-                    console.log("Success");
-                    console.log(data)
-                }
-            });
+            // jQuery.ajax({
+            //     url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+            //     type: "GET",
+            //     crossDomain: true,
+            //     data: data,
+            //     error: function (err) {
+            //         console.log("Error");
+            //     },
+            //     success: function (data, textStatus) {
+            //         console.log("Success");
+            //         console.log(data)
+            //     }
+            // });
 
         }
 
