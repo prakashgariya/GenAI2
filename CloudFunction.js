@@ -171,6 +171,10 @@
 
         _onButtonClick(driver) {
             console.log(driver)
+
+            var dataToSend = JSON.stringify(this.sacData);
+            var aSACData = { "dataString": dataToSend };
+
             var summaryType = "";
             var insightsButton = this.shadowRoot.getElementById('idButtonInsightsType');
             if(driver.target.innerText == "Expanded"){
@@ -229,7 +233,127 @@
                 }
             });
         }
+
+        async getSACDashDetailsTble(title, table) {
+            // var aSelections = await table.getSelections();
+            // var aDataSelection = await table.getDataSource().getDataSelections();
+            // var aData = await table.getDataSource().getData();
+            // var aMeasures = await table.getDataSource().getMeasures();
+
+            if (this.sacData === undefined) {
+                this.sacData = []
+            }
+            const resultSet1 = await table.getDataSource().getResultSet();
+            var jsonContent1 = fetchData(title, resultSet1)
+            this.sacData.push(jsonContent1);
+
+            // var dataToSend1 = JSON.stringify(jsonContent);
+            // var data1 = { "dataString": dataToSend1 };
+
+            // jQuery.ajax({
+            //     url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+            //     type: "GET",
+            //     crossDomain: true,
+            //     data: data1,
+            //     error: function (err) {
+            //         console.log("Error");
+            //     },
+            //     success: function (data, textStatus) {
+            //         console.log("Success");
+            //         console.log(data)
+            //     }
+            // });
+        }
+
+        async getSACDashDetails(title, chart) {
+            const resultSet = await chart.getDataSource().getResultSet();
+            var jsonContent = fetchData(title, resultSet)
+            if (this.sacData === undefined) {
+                this.sacData = []
+            }
+            this.sacData.push(jsonContent);
+
+            // var dataToSend = JSON.stringify(jsonContent);
+            // var data = { "dataString": dataToSend };
+
+            // jQuery.ajax({
+            //     url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+            //     type: "GET",
+            //     crossDomain: true,
+            //     data: data,
+            //     error: function (err) {
+            //         console.log("Error");
+            //     },
+            //     success: function (data, textStatus) {
+            //         console.log("Success");
+            //         console.log(data)
+            //     }
+            // });
+
+        }
     }
 
     customElements.define('sac-cloudfunction', CloudFunction);
+
+    function fetchData(title, resultSet) {
+        let keys = Object.keys(resultSet[0]);
+        let dimensions = keys.filter(key => !key.startsWith('@'));
+        const uniqueMeasureDimensions = [];
+
+        resultSet.forEach(item => {
+            const measureDimensionId = item["@MeasureDimension"].id;
+
+            if (!uniqueMeasureDimensions.includes(measureDimensionId)) {
+                uniqueMeasureDimensions.push(measureDimensionId);
+            }
+        });
+
+        //uniqueMeasureDimensions;
+
+        const uniqueValues = {};
+
+        resultSet.forEach(item => {
+            Object.keys(item).forEach(key => {
+                const value = item[key].id;
+
+                if (!uniqueValues[key]) {
+                    uniqueValues[key] = [value];
+                } else if (!uniqueValues[key].includes(value)) {
+                    uniqueValues[key].push(value);
+                }
+            });
+        });
+
+        var currentTimeInISO = new Date().toISOString();
+        const fileName = title;
+
+        const jsonContent = {
+            title: fileName,
+            createdAt: currentTimeInISO,
+            dimensions: dimensions,
+            measures: uniqueMeasureDimensions,
+            filters: uniqueValues,
+            results: resultSet
+        };
+
+        var dimensionValues = uniqueValues[dimensions[0]]
+        var obj = {}, formattedData = [];
+        for (var i = 0; i < dimensionValues.length; i++) {
+            obj = {};
+            for (var j = 0; j < resultSet.length; j++) {
+                for (var m = 0; m < uniqueMeasureDimensions.length; m++) {
+                    if (dimensionValues[i] === resultSet[j][dimensions[0]].id) {
+                        if (uniqueMeasureDimensions[m] === resultSet[j]["@MeasureDimension"].id) {
+                            obj[dimensions[0]] = dimensionValues[i];
+                            obj[uniqueMeasureDimensions[m]] = resultSet[j]["@MeasureDimension"].rawValue;
+                        }
+                    }
+                }
+            }
+            if (Object.keys(obj).length !== 0)
+                formattedData.push(obj);
+        }
+
+        return {dataDescription: title, data: formattedData};
+    }
 })();
