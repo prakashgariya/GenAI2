@@ -1,4 +1,4 @@
-(function() {
+(function () {
     let _shadowRoot;
     let _id;
     let _password;
@@ -139,7 +139,7 @@
                         }
                     }
                 }
-            } catch (e) {}
+            } catch (e) { }
         }
 
         disconnectedCallback() {
@@ -207,21 +207,21 @@
             }
         }
 
-        async getSACDashDetailsTble(title, table){
+        async getSACDashDetailsTble(title, table) {
             debugger;
             var aSelections = await table.getSelections();
             var aDataSelection = await table.getDataSource().getDataSelections();
             var aData = await table.getDataSource().getData();
             var aMeasures = await table.getDataSource().getMeasures();
 
-            if(this.sacData === undefined){
+            if (this.sacData === undefined) {
                 this.sacData = []
             }
             const resultSet1 = await table.getDataSource().getResultSet();
-            this.sacData.push({type:"Table", content : fetchData(title,resultSet1)});
+            this.sacData.push({ type: "Table", content: fetchData(title, resultSet1) });
 
             var dataToSend1 = JSON.stringify(jsonContent);
-            var data1 = {"dataString":dataToSend1};
+            var data1 = { "dataString": dataToSend1 };
 
             jQuery.ajax({
                 url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
@@ -238,16 +238,16 @@
             });
         }
 
-        async getSACDashDetails(title, chart){
+        async getSACDashDetails(title, chart) {
             const resultSet = await chart.getDataSource().getResultSet();
-            var jsonContent = fetchData(title,resultSet)
-            if(this.sacData === undefined){
+            var jsonContent = fetchData(title, resultSet)
+            if (this.sacData === undefined) {
                 this.sacData = []
             }
-            this.sacData.push({type:"Chart", content : jsonContent});
+            this.sacData.push({ type: "Chart", content: jsonContent });
 
             var dataToSend = JSON.stringify(jsonContent);
-            var data = {"dataString":dataToSend};
+            var data = { "dataString": dataToSend };
 
             jQuery.ajax({
                 url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
@@ -269,48 +269,66 @@
     customElements.define("sap-sac-genai", GenAI);
 
     // UTILS
-    function fetchData(title,resultSet){
+    function fetchData(title, resultSet) {
         let keys = Object.keys(resultSet[0]);
-            let dimensions = keys.filter(key => !key.startsWith('@'));
-            const uniqueMeasureDimensions = [];
+        let dimensions = keys.filter(key => !key.startsWith('@'));
+        const uniqueMeasureDimensions = [];
 
-            resultSet.forEach(item => {
-                const measureDimensionId = item["@MeasureDimension"].id;
+        resultSet.forEach(item => {
+            const measureDimensionId = item["@MeasureDimension"].id;
 
-                if (!uniqueMeasureDimensions.includes(measureDimensionId)) {
-                    uniqueMeasureDimensions.push(measureDimensionId);
+            if (!uniqueMeasureDimensions.includes(measureDimensionId)) {
+                uniqueMeasureDimensions.push(measureDimensionId);
+            }
+        });
+
+        //uniqueMeasureDimensions;
+
+        const uniqueValues = {};
+
+        resultSet.forEach(item => {
+            Object.keys(item).forEach(key => {
+                const value = item[key].id;
+
+                if (!uniqueValues[key]) {
+                    uniqueValues[key] = [value];
+                } else if (!uniqueValues[key].includes(value)) {
+                    uniqueValues[key].push(value);
                 }
             });
+        });
 
-            //uniqueMeasureDimensions;
+        var currentTimeInISO = new Date().toISOString();
+        const fileName = title;
 
-            const uniqueValues = {};
+        const jsonContent = {
+            title: fileName,
+            createdAt: currentTimeInISO,
+            dimensions: dimensions,
+            measures: uniqueMeasureDimensions,
+            filters: uniqueValues,
+            results: resultSet
+        };
 
-            resultSet.forEach(item => {
-                Object.keys(item).forEach(key => {
-                    const value = item[key].id;
-
-                    if (!uniqueValues[key]) {
-                        uniqueValues[key] = [value];
-                    } else if (!uniqueValues[key].includes(value)) {
-                        uniqueValues[key].push(value);
+        var dimensionValues = uniqueValues[dimensions[0]]
+        var obj = {}, formattedData = [];
+        for (var i = 0; i < dimensionValues.length; i++) {
+            obj = {};
+            for (var j = 0; j < resultSet.length; j++) {
+                for (var m = 0; m < uniqueMeasureDimensions.length; m++) {
+                    if (dimensionValues[i] === resultSet[j][dimensions[0]].id) {
+                        if (uniqueMeasureDimensions[m] === resultSet[j]["@MeasureDimension"].id) {
+                            obj[dimensions[0]] = dimensionValues[i];
+                            obj[uniqueMeasureDimensions[m]] = resultSet[j]["@MeasureDimension"].rawValue;
+                        }
                     }
-                });
-            });
+                }
+            }
+            if (Object.keys(obj).length !== 0)
+                formattedData.push(obj);
+        }
 
-            var currentTimeInISO = new Date().toISOString();
-            const fileName = title;
-
-            const jsonContent = {
-                title: fileName,
-                createdAt: currentTimeInISO,
-                dimensions: dimensions,
-                measures: uniqueMeasureDimensions,
-                filters: uniqueValues,
-                results: resultSet
-            };
-
-            return jsonContent;
+        return {dataDescription: title, data: formattedData};
     }
     function loadthis(that) {
         var that_ = that;
@@ -321,7 +339,7 @@
         that_.appendChild(content);
         that_._renderExportButton();
 
-        sap.ui.getCore().attachInit(function() {
+        sap.ui.getCore().attachInit(function () {
             "use strict";
 
             //### Custom Control ###
@@ -341,7 +359,7 @@
                 "sap/m/Title",
                 "sap/ui/core/ResizeHandler",
                 "sap/m/Image"
-            ], function(Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler, Image) {
+            ], function (Control, Button, IconPool, Dialog, List, FeedListItem, FeedInput, ResponsivePopover, VBox, ScrollContainer, Bar, Title, ResizeHandler, Image) {
                 "use strict";
 
                 var ChatDialog = Control.extend("fd.ui.Headline", {
@@ -393,7 +411,7 @@
                         aggregations: {
                             _chatButton: {
                                 type: "sap.m.Image",
-//                                type: "sap.m.Button",
+                                //                                type: "sap.m.Button",
                                 multiple: false
                             },
                             _popover: {
@@ -412,7 +430,7 @@
                         }
                     },
 
-                    init: function() {
+                    init: function () {
                         //initialisation code, in this case, ensure css is imported
                         //var libraryPath = jQuery.sap.getModulePath("pfe.bot");
                         jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
@@ -423,8 +441,8 @@
                             src: "https://prakashgariya.github.io/GenAI2/AskMe.png",
                             width: "4rem",
                             height: "4rem",
-//                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
-  //                          iconDensityAware: false,
+                            //                            icon: "https://img.icons8.com/3d-fluency/94/chatbot.png",
+                            //                          iconDensityAware: false,
                             press: this._onOpenChat.bind(this)
                         });
                         this.setAggregation("_chatButton", oBtn);
@@ -450,10 +468,10 @@
                             resizable: true,
                             horizontalScrolling: false,
                             verticalScrolling: true,
-                            beforeClose: function(e) {
+                            beforeClose: function (e) {
                                 ResizeHandler.deregister(this.sResizeHandleId);
                             }.bind(this),
-                            afterOpen: function(e) {
+                            afterOpen: function (e) {
                                 this.sResizeHandleId = ResizeHandler.register(sap.ui.getCore().byId(this.getId() + "-bkChatPop"), this._saveDimensions.bind(this));
                             }.bind(this),
                         }).addStyleClass("sapUiTinyMargin");
@@ -467,7 +485,7 @@
                         });
 
                         oFeedIn.addEventDelegate({
-                            onsapenter: function(oEvent) {
+                            onsapenter: function (oEvent) {
                                 oEvent.preventDefault();
                                 var sTxt = oFeedIn.getValue();
                                 if (sTxt.length > 0) {
@@ -514,7 +532,7 @@
                         oRpop.insertContent(oVBox, 0);
                     },
 
-                    renderer: function(oRm, oControl) {
+                    renderer: function (oRm, oControl) {
                         var oChatBtn = oControl.getAggregation("_chatButton");
                         var oPop = oControl.getAggregation("_popover");
 
@@ -528,18 +546,18 @@
                         oRm.write("</div>");
                     },
 
-                    onAfterRendering: function(args) {
+                    onAfterRendering: function (args) {
                         if (sap.ui.core.Control.prototype.onAfterRendering) {
                             sap.ui.core.Control.prototype.onAfterRendering.apply(this, args);
                         }
                     },
 
-                    setTitle: function(sTitle) {
+                    setTitle: function (sTitle) {
                         this.setProperty("title", sTitle, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatTitle").setText(sTitle);
                     },
 
-                    setHeight: function(sHeight) {
+                    setHeight: function (sHeight) {
                         this.setProperty("height", sHeight, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatPop").setContentHeight(sHeight);
 
@@ -547,40 +565,40 @@
                         sap.ui.getCore().byId(this.getId() + "-bkChatScroll").setHeight(iScrollHeight + "px");
                     },
 
-                    setWidth: function(sWidth) {
+                    setWidth: function (sWidth) {
                         this.setProperty("width", sWidth, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatPop").setContentWidth(sWidth);
                     },
 
-                    setUserIcon: function(sUserIcon) {
+                    setUserIcon: function (sUserIcon) {
                         this.setProperty("userIcon", sUserIcon, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatInput").setIcon(sUserIcon);
                     },
 
-                    setRobotIcon: function(sRobotIcon) {
+                    setRobotIcon: function (sRobotIcon) {
                         this.setProperty("robotIcon", sRobotIcon, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatInitial").setIcon(sRobotIcon);
                     },
 
-                    setButtonIcon: function(sButtonIcon) {
+                    setButtonIcon: function (sButtonIcon) {
                         this.setProperty("buttonIcon", sButtonIcon, true);
                         // sap.ui.getCore().byId(this.getId() + "-bkChatButton").setIcon(sButtonIcon);
                         sap.ui.getCore().byId(this.getId() + "-bkChatButton").setSrc(sButtonIcon);
                     },
 
-                    setInitialMessage: function(sText) {
+                    setInitialMessage: function (sText) {
                         this.setProperty("initialMessage", sText, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatInitial").setText(sText);
                     },
 
-                    setPlaceHolder: function(sText) {
+                    setPlaceHolder: function (sText) {
                         this.setProperty("placeHolder", sText, true);
                         sap.ui.getCore().byId(this.getId() + "-bkChatInput").setPlaceholder(sText);
                     },
 
-                    _onPost: function(oEvent) {
+                    _onPost: function (oEvent) {
                         var this_ = this;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             this_.botStartTyping();
                         }, 1000);
 
@@ -592,19 +610,19 @@
                         //this_.botStartTyping();
                     },
 
-                    _onOpenChat: function(oEvent) {
+                    _onOpenChat: function (oEvent) {
                         this.getAggregation("_popover").openBy(this.getAggregation("_chatButton"));
                         this.getAggregation("_popover").setContentHeight(this.getProperty("height"));
                         this.getAggregation("_popover").setContentWidth(this.getProperty("width"));
                     },
 
-                    _saveDimensions: function(oEvent) {
+                    _saveDimensions: function (oEvent) {
                         //console.log(sap.ui.getCore().byId(this.getId() + "-bkChatPop").getContentHeight() + ", " + oEvent.size.height);
                         this.setProperty("height", oEvent.size.height + "px", true);
                         this.setProperty("width", oEvent.size.width + "px", true);
                     },
 
-                    _toggleAutoClose: function(oEvent) {
+                    _toggleAutoClose: function (oEvent) {
                         var bAuto = this.getAggregation("_popover").getAggregation("_popup").oPopup.getAutoClose();
                         if (bAuto) {
                             oEvent.getSource().setProperty("icon", "sap-icon://pushpin-on");
@@ -615,20 +633,20 @@
                         }
                     },
 
-                    _toggleClose: function() {
+                    _toggleClose: function () {
                         sap.ui.getCore().byId(this.getId() + "-bkChatList").removeAllItems();
                         this.getAggregation("_popover").close();
                     },
 
-                    botStartTyping: function() {
+                    botStartTyping: function () {
                         sap.ui.getCore().byId(this.getId() + "-bkChatStatusBar").setText("Fetching Details...");
                     },
 
-                    botFinishTyping: function() {
+                    botFinishTyping: function () {
                         sap.ui.getCore().byId(this.getId() + "-bkChatStatusBar").setText("");
                     },
 
-                    addChatItem: function(sText, bUser) {
+                    addChatItem: function (sText, bUser) {
                         var oFeedListItem = new FeedListItem({
                             showIcon: true,
                             text: sText
@@ -645,7 +663,7 @@
 
                         }
                         var oScroll = sap.ui.getCore().byId(this.getId() + "-bkChatScroll");
-                        setTimeout(function() {
+                        setTimeout(function () {
                             oScroll.scrollTo(0, 1000, 0);
                         }, 0);
                     }
@@ -657,11 +675,11 @@
             //### Controller ###
             sap.ui.define([
                 "sap/ui/core/mvc/Controller"
-            ], function(Controller, ODataModel) {
+            ], function (Controller, ODataModel) {
                 "use strict";
 
                 return Controller.extend("MyController", {
-                    onSendPressed: function(oEvent) {
+                    onSendPressed: function (oEvent) {
                         var chatbot = this.getView().byId("botchat");
                         var question = oEvent.getParameter("text");
                         console.log(question);
@@ -670,7 +688,7 @@
                         //     messages : [{ role : "user", content : question }]
                         // });
 
-                        var data = {"question":question};
+                        var data = { "question": question };
 
                         // const API_URL = "https://api.openai.com/v1/chat/completions";
                         // const API_KEY = "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";
@@ -681,48 +699,49 @@
                         }
 
                         question = question.toUpperCase();
-                        if(question === "HI" || question.search("HELLO") !== -1){
-                            chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);}
+                        if (question === "HI" || question.search("HELLO") !== -1) {
+                            chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
+                        }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
                             chatbot.addChatItem("Thank you..!!\n Have a nice day.", false);
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 chatbot._toggleClose();
                             }, 1000);
-                        } else if (question.search("DISEASE SEASON") !== -1){
+                        } else if (question.search("DISEASE SEASON") !== -1) {
                             chatbot.addChatItem("There are 4 seasons. \n Winter, Spring, Summer, Fall", false);
                         }
                         // else if(question.search("YOY") !== -1 || question.search("VARIANCE") !== -1){
                         //     chatbot.addChatItem("Variance is calculated by ( Current Sales - Last Year Sales )", false);
                         // } 
-                        else if(question.search("NAMASTE") !== -1){
+                        else if (question.search("NAMASTE") !== -1) {
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
-                        } 
+                        }
                         else {
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
                             const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbot";
                             // const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiVmZ0RDJBYmxZZFdNS1ZxRzZpYzAzdyIsIm5iZiI6MTY5NDUwNzU1OCwiaWF0IjoxNjk0NTA3ODU4LCJleHAiOjE2OTQ1MTE0NTgsImp0aSI6IjQ1NmNlMDliNDgzMzQxZGVjMWE0YTA1NjdkNmI0NWY5NzUzNjk1NDYifQ.IAxPDcxuGF51mVJyrS7PBXok4L9Kq4NPdAPnLtZwvvTAtN-8K8F-7nECRhUmYrA0_3y10R8U7ohkAhTy391mJaWVTP0MBM-U5AzlYkV8xOs5JmHy65ljfOfaAG5fXbleAyT4h2YVWW9w5-kHknqfdWYCt0VYvH9iFU6MnIKLqq8f0ZbknTWMufBbASNe9LSPnV_YbLgqVkNpTuoI6_OmUtoMgtVwNzEa02LPJgWoOSs88pgFcfhy_km4pQAMrBRUOP5B5IAegED11sNEMWGutfjrjPaIecHhB4XWOK5ijr61X22mR28zec3B-z0mT5Gd36zDZeLbcyc6r6_6DMIXT";
                             jQuery.ajax({
-                                    url: API_URL,
-                                    cache: false,
-                                    type: "GET",
-                                    headers: {
-                                        // 'Authorization': `Bearer ${API_KEY}`,
-                                        'Content-Type': 'application/json'
-                                    },
-                                    data: data,
-                                    async: true,
-                                    success: function(sData) {
-                                       // const data = sData.json();
-                                        var response = sData;
-                                        chatbot.addChatItem(sData, false);
-                                        chatbot.botFinishTyping();
-                                        //localStorage.setItem("chatId", sData.id);
-                                    },
-                                    error: function(sError) {
-                                        chatbot.addChatItem("Oops couldn't get your response..!!!", false);
-                                        chatbot.botFinishTyping();
-                                    }
-                                });
+                                url: API_URL,
+                                cache: false,
+                                type: "GET",
+                                headers: {
+                                    // 'Authorization': `Bearer ${API_KEY}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                data: data,
+                                async: true,
+                                success: function (sData) {
+                                    // const data = sData.json();
+                                    var response = sData;
+                                    chatbot.addChatItem(sData, false);
+                                    chatbot.botFinishTyping();
+                                    //localStorage.setItem("chatId", sData.id);
+                                },
+                                error: function (sError) {
+                                    chatbot.addChatItem("Oops couldn't get your response..!!!", false);
+                                    chatbot.botFinishTyping();
+                                }
+                            });
                         }
                         chatbot.botFinishTyping();
 
@@ -787,7 +806,7 @@
     }
 
     function loadScript(src, shadowRoot) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             let script = document.createElement('script');
             script.src = src;
 
@@ -801,7 +820,7 @@
         });
     }
 
-    async function getSACDashDetails1(title, chart){
+    async function getSACDashDetails1(title, chart) {
         const resultSet = await chart.getDataSource().getResultSet();
         let keys = Object.keys(resultSet[0]);
         let dimensions = keys.filter(key => !key.startsWith('@'));
@@ -844,7 +863,7 @@
         };
 
         var dataToSend = JSON.stringify(jsonContent);
-        var data = {"dataString":dataToSend};
+        var data = { "dataString": dataToSend };
 
         jQuery.ajax({
             url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
