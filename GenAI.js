@@ -212,12 +212,59 @@
                 this.sacData = []
             }
             const resultSet1 = await table.getDataSource().getResultSet();
-            this.sacData.push(resultSet1)
+            this.sacData.push({type:"Table", content : fetchData(resultSet1)});
+
+            var dataToSend1 = JSON.stringify(jsonContent);
+            var data1 = {"dataString":dataToSend1};
+
+            jQuery.ajax({
+                url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+                type: "GET",
+                crossDomain: true,
+                data: data1,
+                error: function (err) {
+                    console.log("Error");
+                },
+                success: function (data, textStatus) {
+                    console.log("Success");
+                    console.log(data)
+                }
+            });
         }
 
         async getSACDashDetails(title, chart){
             const resultSet = await chart.getDataSource().getResultSet();
-            let keys = Object.keys(resultSet[0]);
+            var jsonContent = fetchData(resultSet)
+            if(this.sacData === undefined){
+                this.sacData = []
+            }
+            this.sacData.push({type:"Chart", content : jsonContent});
+
+            var dataToSend = JSON.stringify(jsonContent);
+            var data = {"dataString":dataToSend};
+
+            jQuery.ajax({
+                url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+                type: "GET",
+                crossDomain: true,
+                data: data,
+                error: function (err) {
+                    console.log("Error");
+                },
+                success: function (data, textStatus) {
+                    console.log("Success");
+                    console.log(data)
+                }
+            });
+
+        }
+
+    }
+    customElements.define("sap-sac-genai", GenAI);
+
+    // UTILS
+    function fetchData(resultSet){
+        let keys = Object.keys(resultSet[0]);
             let dimensions = keys.filter(key => !key.startsWith('@'));
             const uniqueMeasureDimensions = [];
 
@@ -257,32 +304,8 @@
                 results: resultSet
             };
 
-            this.sacData = [];
-            this.sacData.push(jsonContent);
-
-            var dataToSend = JSON.stringify(jsonContent);
-        var data = {"dataString":dataToSend};
-
-        jQuery.ajax({
-            url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
-            type: "GET",
-            crossDomain: true,
-            data: data,
-            error: function (err) {
-                console.log("Error");
-            },
-            success: function (data, textStatus) {
-                console.log("Success");
-                console.log(data)
-            }
-        });
-
-        }
-
+            return jsonContent;
     }
-    customElements.define("sap-sac-genai", GenAI);
-
-    // UTILS
     function loadthis(that) {
         var that_ = that;
 
