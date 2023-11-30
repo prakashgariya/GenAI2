@@ -142,7 +142,7 @@
             // this.settings.format = "CustomFormat";
             this.addEventListener("click", event => {
                 console.log('click');
-                var event = new Event("onClick");
+                var event = new Event("onStart");
                 this.dispatchEvent(event);
                 // this._onButtonClick.bind(this)
                 // this.dispatchEvent(new CustomEvent("onStart", {
