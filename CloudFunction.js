@@ -175,6 +175,12 @@
             //this._image.addEventListener('click', this._onButtonClick.bind(this));
 
             //this._shadowRoot.querySelector('textArea').hidden = true;
+            this._firstConnection = false;
+        }
+
+        connectedCallback(){
+            this._firstConnection = true;
+            this.redraw(); 
         }
 
         _onButtonClickDropdown(driver){
