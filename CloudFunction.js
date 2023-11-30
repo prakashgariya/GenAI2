@@ -144,6 +144,7 @@
                 console.log('click');
                 var event = new Event("onClick");
                 this.dispatchEvent(event);
+                // this._onButtonClick.bind(this)
                 // this.dispatchEvent(new CustomEvent("onStart", {
                 //     detail: {
                 //         settings: this.settings
@@ -152,15 +153,15 @@
             });
 
             let buttonList = this._shadowRoot.querySelectorAll('button');
-            for(let i in buttonList){
-                if(typeof(buttonList[i]) == 'object'){
-                    if(buttonList[i].innerText == 'Generate Insights')
-                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
-                    else if(buttonList[i].innerText == 'Expanded')
-                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
-                        // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
-                }    
-            }
+            // for(let i in buttonList){
+            //     if(typeof(buttonList[i]) == 'object'){
+            //         if(buttonList[i].innerText == 'Generate Insights')
+            //             buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+            //         else if(buttonList[i].innerText == 'Expanded')
+            //             buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+            //             // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
+            //     }    
+            // }
 
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
             //  let aTagList = this._shadowRoot.querySelectorAll('a');
