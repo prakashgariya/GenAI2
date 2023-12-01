@@ -140,16 +140,21 @@
 
             // this.settings = {};
             // this.settings.format = "CustomFormat";
-            this.addEventListener("click", event => {
-                console.log('click');
-                var event = new Event("onStart");
-                this.dispatchEvent(event);
+            // this.addEventListener("click", event => {
+            //     console.log('click');
+            //     var event = new Event("onStart");
+            //     this.dispatchEvent(event);
                 // this._onButtonClick.bind(this)
                 // this.dispatchEvent(new CustomEvent("onStart", {
                 //     detail: {
                 //         settings: this.settings
                 //     }
                 // }));
+            // });
+
+            this.addEventListener("click", event => {
+				var event = new Event("onStart");
+				this.dispatchEvent(event);
             });
 
             let buttonList = this._shadowRoot.querySelectorAll('button');
@@ -175,7 +180,7 @@
             //this._image.addEventListener('click', this._onButtonClick.bind(this));
 
             //this._shadowRoot.querySelector('textArea').hidden = true;
-            this._firstConnection = false;
+            this._firstConnection = false
         }
 
         connectedCallback(){
