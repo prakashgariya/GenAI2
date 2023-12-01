@@ -181,7 +181,7 @@
 
             //this._shadowRoot.querySelector('textArea').hidden = true;
             this._firstConnection = false;
-            this._tagContainer;g
+            this._tagContainer;
             this._tagType = "h1";
             this._tagText = "Generate Insights";
         }
@@ -268,8 +268,8 @@
 
             var shadow = window.getSelection(this._shadowRoot);
             this._tagContainer = document.createElement(this._tagType);
-            // var theText = document.createTextNode(this._tagText);    
-            // this._tagContainer.appendChild(); 
+            var theText = document.createTextNode(this._tagText);    
+            this._tagContainer.appendChild(theText);
             this._shadowRoot.appendChild(this._tagContainer);
 
         }
