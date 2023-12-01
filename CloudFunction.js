@@ -268,8 +268,8 @@
 
             var shadow = window.getSelection(this._shadowRoot);
             this._tagContainer = document.createElement(this._tagType);
-            var theText = document.createTextNode(this._tagText);    
-            this._tagContainer.appendChild(theText); 
+            // var theText = document.createTextNode(this._tagText);    
+            // this._tagContainer.appendChild(); 
             this._shadowRoot.appendChild(this._tagContainer);
 
         }
