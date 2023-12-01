@@ -180,7 +180,10 @@
             //this._image.addEventListener('click', this._onButtonClick.bind(this));
 
             //this._shadowRoot.querySelector('textArea').hidden = true;
-            this._firstConnection = false
+            this._firstConnection = false;
+            this._tagContainer;g
+            this._tagType = "h1";
+            this._tagText = "Generate Insights";
         }
 
         connectedCallback(){
@@ -258,7 +261,18 @@
                 }
             });
         }
+        redraw(){
+            if (this._tagContainer){
+                this._tagContainer.parentNode.removeChild(this._tagContainer);
+            }
 
+            var shadow = window.getSelection(this._shadowRoot);
+            this._tagContainer = document.createElement(this._tagType);
+            var theText = document.createTextNode(this._tagText);    
+            this._tagContainer.appendChild(theText); 
+            this._shadowRoot.appendChild(this._tagContainer);
+
+        }
         async getSACDashDetailsTble(title, table) {
             // var aSelections = await table.getSelections();
             // var aDataSelection = await table.getDataSource().getDataSelections();
