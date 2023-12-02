@@ -152,21 +152,21 @@
                 // }));
             // });
 
-            this.addEventListener("click", event => {
-				var event = new Event("onStart");
-				this.dispatchEvent(event);
-            });
+            // this.addEventListener("click", event => {
+			// 	var event = new Event("onStart");
+			// 	this.dispatchEvent(event);
+            // });
 
             let buttonList = this._shadowRoot.querySelectorAll('button');
-            // for(let i in buttonList){
-            //     if(typeof(buttonList[i]) == 'object'){
-            //         if(buttonList[i].innerText == 'Generate Insights')
-            //             buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
-            //         else if(buttonList[i].innerText == 'Expanded')
-            //             buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
-            //             // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
-            //     }    
-            // }
+            for(let i in buttonList){
+                if(typeof(buttonList[i]) == 'object'){
+                    if(buttonList[i].innerText == 'Generate Insights')
+                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+                    else if(buttonList[i].innerText == 'Expanded')
+                        buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
+                        // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
+                }    
+            }
 
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
             //  let aTagList = this._shadowRoot.querySelectorAll('a');
@@ -261,18 +261,18 @@
                 }
             });
         }
-        redraw(){
-            if (this._tagContainer){
-                this._tagContainer.parentNode.removeChild(this._tagContainer);
-            }
+        // redraw(){
+        //     if (this._tagContainer){
+        //         this._tagContainer.parentNode.removeChild(this._tagContainer);
+        //     }
 
-            var shadow = window.getSelection(this._shadowRoot);
-            this._tagContainer = document.createElement(this._tagType);
-            var theText = document.createTextNode(this._tagText);    
-            this._tagContainer.appendChild(theText);
-            this._shadowRoot.appendChild(this._tagContainer);
+        //     var shadow = window.getSelection(this._shadowRoot);
+        //     this._tagContainer = document.createElement(this._tagType);
+        //     var theText = document.createTextNode(this._tagText);    
+        //     // this._tagContainer.appendChild(theText);
+        //     this._shadowRoot.appendChild(this._tagContainer);
 
-        }
+        // }
         async getSACDashDetailsTble(title, table) {
             // var aSelections = await table.getSelections();
             // var aDataSelection = await table.getDataSource().getDataSelections();
