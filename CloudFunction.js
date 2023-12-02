@@ -165,7 +165,7 @@
                     else if(buttonList[i].innerText == 'Expanded')
                         buttonList[i].addEventListener('click', this._onButtonClick.bind(this));
                         // buttonList[i].addEventListener('click', this._onButtonClickDropdown.bind(this));
-                }    
+                }
             }
 
             // this._button.addEventListener('click', this._onButtonClick.bind(this));
@@ -180,15 +180,15 @@
             //this._image.addEventListener('click', this._onButtonClick.bind(this));
 
             //this._shadowRoot.querySelector('textArea').hidden = true;
-            this._firstConnection = false;
-            this._tagContainer;
-            this._tagType = "h1";
-            this._tagText = "Generate Insights";
+            // this._firstConnection = false;
+            // this._tagContainer;
+            // this._tagType = "h1";
+            // this._tagText = "Generate Insights";
         }
 
         connectedCallback(){
             this._firstConnection = true;
-            this.redraw(); 
+            // this.redraw();
         }
 
         _onButtonClickDropdown(driver){
