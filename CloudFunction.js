@@ -277,6 +277,13 @@
         //     this._shadowRoot.appendChild(this._tagContainer);
 
         // }
+        async emptySacArray(flag){
+            if (this.sacData === undefined) {
+                this.sacData = []
+            }else{
+                this.sacData = []
+            }
+        }
         async getSACDashDetailsTble(title, table) {
             // var aSelections = await table.getSelections();
             // var aDataSelection = await table.getDataSource().getDataSelections();
