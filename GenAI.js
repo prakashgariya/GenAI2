@@ -701,7 +701,7 @@
 
                         question = question.toUpperCase();
                         if (question === "HI" || question.search("HELLO") !== -1) {
-                            chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
+                            // chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
                         }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
