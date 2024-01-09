@@ -701,7 +701,7 @@
 
                         question = question.toUpperCase();
                         if (question === "HI" || question.search("HELLO") !== -1) {
-                            this.noOfAICalls = this.noOfAICalls + 1;
+                            chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
                         }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
@@ -719,7 +719,7 @@
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
                         }
                         else {
-                            this.noOfAICalls = this.noOfAICalls + 1;
+                            chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             data = { "question": question, "iteration": noOfAICalls };
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
                             const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbot";
