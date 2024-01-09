@@ -332,7 +332,7 @@
     }
     function loadthis(that) {
         var that_ = that;
-
+        this.noOfAICalls = 0;
 
         let content = document.createElement('div');
         content.slot = "content";
@@ -433,6 +433,7 @@
                     init: function () {
                         //initialisation code, in this case, ensure css is imported
                         //var libraryPath = jQuery.sap.getModulePath("pfe.bot");
+                        this.noOfAICalls = 0;
                         jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
 
 
