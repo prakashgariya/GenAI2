@@ -677,7 +677,7 @@
                 "sap/ui/core/mvc/Controller"
             ], function (Controller, ODataModel) {
                 "use strict";
-
+                this.noOfAICalls = 0;
                 return Controller.extend("MyController", {
                     onSendPressed: function (oEvent) {
                         var chatbot = this.getView().byId("botchat");
@@ -700,6 +700,7 @@
 
                         question = question.toUpperCase();
                         if (question === "HI" || question.search("HELLO") !== -1) {
+                            this.noOfAICalls = this.noOfAICalls + 1;
                             chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
                         }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
