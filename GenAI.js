@@ -720,7 +720,7 @@
                         }
                         else {
                             chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
-                            data = { "question": question, "iteration": noOfAICalls };
+                            data = { "question": question, "iteration": chatbot.noOfAICalls };
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
                             const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbotAssistant";
                             // const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbot";
