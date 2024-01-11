@@ -215,7 +215,7 @@
                 summaryType = "General";
                 // insightsButton.innerHTML = "Expanded";
             }
-            summaryType = "Concise";
+            summaryType = "General";
             var data = {"type":summaryType};
             // data = aSACData;
 
