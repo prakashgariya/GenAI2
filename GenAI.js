@@ -720,10 +720,10 @@
                         }
                         else {
                             chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
-                            data = { "question": question, "iteration": chatbot.noOfAICalls };
+                            // data = { "question": question, "iteration": chatbot.noOfAICalls };
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
-                            const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbotAssistant";
-                            // const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbot";
+                            // const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbotAssistant";
+                            const API_URL = "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/chatbot";
                             // const API_KEY = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzOGMwNmM2MjA0NmMyZDk0OGFmZmUxMzdkZDUzMTAxMjlmNGQ1ZDEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzc4MzE0ODMyNjg4MzIxNzgwIiwiaGQiOiJkZWxvaXR0ZS5jb20iLCJlbWFpbCI6InVzYS1wZ2FyaXlhQGRlbG9pdHRlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiVmZ0RDJBYmxZZFdNS1ZxRzZpYzAzdyIsIm5iZiI6MTY5NDUwNzU1OCwiaWF0IjoxNjk0NTA3ODU4LCJleHAiOjE2OTQ1MTE0NTgsImp0aSI6IjQ1NmNlMDliNDgzMzQxZGVjMWE0YTA1NjdkNmI0NWY5NzUzNjk1NDYifQ.IAxPDcxuGF51mVJyrS7PBXok4L9Kq4NPdAPnLtZwvvTAtN-8K8F-7nECRhUmYrA0_3y10R8U7ohkAhTy391mJaWVTP0MBM-U5AzlYkV8xOs5JmHy65ljfOfaAG5fXbleAyT4h2YVWW9w5-kHknqfdWYCt0VYvH9iFU6MnIKLqq8f0ZbknTWMufBbASNe9LSPnV_YbLgqVkNpTuoI6_OmUtoMgtVwNzEa02LPJgWoOSs88pgFcfhy_km4pQAMrBRUOP5B5IAegED11sNEMWGutfjrjPaIecHhB4XWOK5ijr61X22mR28zec3B-z0mT5Gd36zDZeLbcyc6r6_6DMIXT";
                             jQuery.ajax({
                                 url: API_URL,
