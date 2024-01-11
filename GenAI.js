@@ -709,9 +709,10 @@
                             setTimeout(function () {
                                 chatbot._toggleClose();
                             }, 1000);
-                        } else if (question.search("DISEASE SEASON") !== -1) {
-                            chatbot.addChatItem("There are 4 seasons. \n Winter, Spring, Summer, Fall", false);
-                        }
+                        } 
+                        // else if (question.search("DISEASE SEASON") !== -1) {
+                        //     chatbot.addChatItem("There are 4 seasons. \n Winter, Spring, Summer, Fall", false);
+                        // }
                         // else if(question.search("YOY") !== -1 || question.search("VARIANCE") !== -1){
                         //     chatbot.addChatItem("Variance is calculated by ( Current Sales - Last Year Sales )", false);
                         // } 
