@@ -768,7 +768,7 @@
                                     // const data = sData.json();
                                     chatbot.fileIdForDeletion = sData.file
                                     var response = sData.response;
-                                    chatbot.addChatItem(sData, false);
+                                    chatbot.addChatItem(response, false);
                                     chatbot.botFinishTyping();
                                     //localStorage.setItem("chatId", sData.id);
                                 },
