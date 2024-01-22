@@ -704,10 +704,10 @@
                                     'Content-Type': 'application/json'
                                 },
                                 data: sendParameters,
-                                async: true,
+                                async: false,
                                 success: function (sData) {
                                     chatbot.assistantID = sData.assistantId
-                                    chatbot.fileDeletion = sData.fileId
+                                    chatbot.fileIdForDeletion = sData.fileId
                                 },
                                 error: function (sError) {
                                     chatbot.addChatItem("Oops couldn't get your response..!!!", false);
@@ -745,7 +745,7 @@
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
                         }
                         else {
-                            data = {"question":question,"iteration":3,"fileDeletion":chatbot.fileDeletion, "assistantID":chatbot.assistantID}
+                            data = {"question":question,"iteration":3,"fileDeletion":chatbot.fileIdForDeletion, "assistantID":chatbot.assistantID}
                             // chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             // data = { "question": question, "iteration": chatbot.noOfAICalls };
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
@@ -766,7 +766,7 @@
                                 async: true,
                                 success: function (sData) {
                                     // const data = sData.json();
-                                    chatbot.fileDeletion = sData.file
+                                    chatbot.fileIdForDeletion = sData.file
                                     var response = sData.response;
                                     chatbot.addChatItem(sData, false);
                                     chatbot.botFinishTyping();
