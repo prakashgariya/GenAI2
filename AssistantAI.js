@@ -272,7 +272,7 @@
         }
 
     }
-    customElements.define("sap-sac-genai", GenAIAssistant);
+    customElements.define("sap-sac-genaiassistant", GenAIAssistant);
 
     // UTILS
     function fetchData(title, resultSet) {
@@ -643,6 +643,29 @@
                                 error: function (sError) {
                                     this_.addChatItem("Oops couldn't get your response..!!!", false);
                                 }
+                            });
+                            window.addEventListener('beforeunload', function (e) {
+                                // e.preventDefault();
+                                // e.returnValue = 'Deleting AI Assistant';
+                                var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":this.assistantID}
+                                jQuery.ajax({
+                                    url: "https://genaiassistant-silly-bushbuck-ye.cfapps.us10.hana.ondemand.com",
+                                    cache: false,
+                                    type: "GET",
+                                    headers: {
+                                        // 'Authorization': `Bearer ${API_KEY}`,
+                                        'Content-Type': 'application/json'
+                                    },
+                                    data: sendParameters,
+                                    async: false,
+                                    success: function (sData) {
+                                        _this.assistantID = sData.assistantId
+                                        _this.fileIdForDeletion = sData.fileId
+                                    },
+                                    error: function (sError) {
+                                        this_.addChatItem("Oops couldn't get your response..!!!", false);
+                                    }
+                                });
                             });
                     },
 
