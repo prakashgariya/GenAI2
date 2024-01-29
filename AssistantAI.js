@@ -207,6 +207,12 @@
             }
         }
 
+        async getLoggedInUserId(userid){
+            if (this.UserID === undefined) {
+                this.UserID = userid
+            }
+        }
+
         async getSACDashDetailsTble(title, table) {
             // var aSelections = await table.getSelections();
             // var aDataSelection = await table.getDataSource().getDataSelections();
@@ -601,9 +607,10 @@
 
                     _onPost: function (oEvent) {
                         var this_ = this;
-                        setTimeout(function () {
-                            this_.botStartTyping();
-                        }, 1000);
+                        this_.botStartTyping();
+                        // setTimeout(function () {
+                        //     this_.botStartTyping();
+                        // }, 1000);
 
                         var sText = oEvent.getSource().getValue();
                         this.addChatItem(sText, true);
@@ -617,6 +624,26 @@
                         this.getAggregation("_popover").openBy(this.getAggregation("_chatButton"));
                         this.getAggregation("_popover").setContentHeight(this.getProperty("height"));
                         this.getAggregation("_popover").setContentWidth(this.getProperty("width"));
+                        var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":"Dummy"}
+                        var _this = this;
+                            jQuery.ajax({
+                                url: "https://genaiassistant-silly-bushbuck-ye.cfapps.us10.hana.ondemand.com",
+                                cache: false,
+                                type: "GET",
+                                headers: {
+                                    // 'Authorization': `Bearer ${API_KEY}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                data: sendParameters,
+                                async: false,
+                                success: function (sData) {
+                                    _this.assistantID = sData.assistantId
+                                    _this.fileIdForDeletion = sData.fileId
+                                },
+                                error: function (sError) {
+                                    this_.addChatItem("Oops couldn't get your response..!!!", false);
+                                }
+                            });
                     },
 
                     _saveDimensions: function (oEvent) {
@@ -728,9 +755,11 @@
                         if (question === "HI" || question.search("HELLO") !== -1) {
                             // chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
+                            chatbot.botFinishTyping();
                         }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
                             chatbot.addChatItem("Thank you..!!\n Have a nice day.", false);
+                            chatbot.botFinishTyping();
                             setTimeout(function () {
                                 chatbot._toggleClose();
                             }, 1000);
@@ -743,6 +772,7 @@
                         // } 
                         else if (question.search("NAMASTE") !== -1) {
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
+                            chatbot.botFinishTyping();
                         }
                         else {
                             data = {"question":question,"iteration":3,"fileDeletion":chatbot.fileIdForDeletion, "assistantID":chatbot.assistantID}
