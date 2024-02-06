@@ -599,9 +599,10 @@
 
                     _onPost: function (oEvent) {
                         var this_ = this;
-                        setTimeout(function () {
-                            this_.botStartTyping();
-                        }, 1000);
+                        this_.botStartTyping();
+                        // setTimeout(function () {
+                        //     this_.botStartTyping();
+                        // }, 1000);
 
                         var sText = oEvent.getSource().getValue();
                         this.addChatItem(sText, true);
@@ -703,9 +704,11 @@
                         if (question === "HI" || question.search("HELLO") !== -1) {
                             // chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             chatbot.addChatItem("Hello I am your virtual assistant.\n What can I help you with today?", false);
+                            chatbot.botFinishTyping();
                         }
                         else if (question.search("BYE") !== -1 || question.search("EXIT") !== -1) {
                             chatbot.addChatItem("Thank you..!!\n Have a nice day.", false);
+                            chatbot.botFinishTyping();
                             setTimeout(function () {
                                 chatbot._toggleClose();
                             }, 1000);
@@ -718,6 +721,7 @@
                         // } 
                         else if (question.search("NAMASTE") !== -1) {
                             chatbot.addChatItem("राम राम जी...की हाल चाल...!!!", false);
+                            chatbot.botFinishTyping();
                         }
                         else {
                             chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
@@ -750,7 +754,7 @@
                                 }
                             });
                         }
-                        chatbot.botFinishTyping();
+                        // chatbot.botFinishTyping();
 
 
                         // jQuery.ajax({
