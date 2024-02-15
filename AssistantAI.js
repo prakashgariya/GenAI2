@@ -624,6 +624,9 @@
                         this.getAggregation("_popover").openBy(this.getAggregation("_chatButton"));
                         this.getAggregation("_popover").setContentHeight(this.getProperty("height"));
                         this.getAggregation("_popover").setContentWidth(this.getProperty("width"));
+                        if ( this.UserID == undefined ) {
+                            this.UserID = "DBUSER"
+                        }
                         var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":"Dummy"}
                         var _this = this;
                             jQuery.ajax({
