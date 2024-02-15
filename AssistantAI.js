@@ -630,6 +630,8 @@
                         // if ( this.UserID == undefined ) {
                         //     this.UserID = "DBUSER"
                         // }
+                                // "url": "https://prakashgariya.github.io/GenAI2/AssistantAI.js",
+                                //        "url": "https://prakashgariya.github.io/GenAI2/GenAI.js",
                         var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":"Dummy"}
                         var _this = this;
                             jQuery.ajax({
@@ -839,32 +841,6 @@
                             });
                         }
                         chatbot.botFinishTyping();
-
-
-                        // jQuery.ajax({
-                        //     url: API_URL,
-                        //     cache: false,
-                        //     type: "POST",
-                        //     headers: {
-                        //         'Authorization': `Bearer ${API_KEY}`,
-                        //         'Content-Type': 'application/json'
-                        //     },
-                        //     data: data,
-                        //     async: true,
-                        //     success: function(sData) {
-                        //         console.log('[POST] /discover-dialog', sData);
-
-                        //         const data = sData.json();
-                        //         chatbot.addChatItem(data.choices[0].message.content, false);
-                        //         //chatbot.addChatItem(sData.results.messages[0].content, false);
-                        //         chatbot.botFinishTyping();
-                        //         localStorage.setItem("chatId", sData.id);
-                        //     },
-                        //     error: function(sError) {
-                        //         chatbot.addChatItem("Something error!", false);
-                        //         chatbot.botFinishTyping();
-                        //     }
-                        // });
                     }
                 });
             });
