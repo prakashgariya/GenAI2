@@ -340,6 +340,7 @@
         var that_ = that;
         this.assistantID = 0;
         this.fileIdForDeletion = 1;
+        this.UserID = "DBUSER";
         let content = document.createElement('div');
         content.slot = "content";
         that_.appendChild(content);
@@ -369,6 +370,7 @@
                 "use strict";
                 this.assistantID = 0;
                 this.fileIdForDeletion = 1;
+                this.UserID = "DBUSER";
                 var ChatDialog = Control.extend("fd.ui.Headline", {
                     metadata: {
                         properties: {
@@ -442,6 +444,7 @@
                         //var libraryPath = jQuery.sap.getModulePath("pfe.bot");
                         this.assistantID = 0;
                         this.fileIdForDeletion = 1;
+                        this.UserID = "DBUSER";
                         jQuery.sap.includeStyleSheet("https://prakashgariya.github.io/GenAI2/bkChat.css");
 
 
@@ -624,9 +627,9 @@
                         this.getAggregation("_popover").openBy(this.getAggregation("_chatButton"));
                         this.getAggregation("_popover").setContentHeight(this.getProperty("height"));
                         this.getAggregation("_popover").setContentWidth(this.getProperty("width"));
-                        if ( this.UserID == undefined ) {
-                            this.UserID = "DBUSER"
-                        }
+                        // if ( this.UserID == undefined ) {
+                        //     this.UserID = "DBUSER"
+                        // }
                         var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":"Dummy"}
                         var _this = this;
                             jQuery.ajax({
@@ -735,6 +738,7 @@
                 "use strict";
                 this.assistantID = 0;
                 this.fileIdForDeletion = 1;
+                this.UserID = "DBUSER";
                 return Controller.extend("MyController", {
                     onSendPressed: function (oEvent) {
                         var chatbot = this.getView().byId("botchat");
