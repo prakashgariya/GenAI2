@@ -655,7 +655,7 @@
                             window.addEventListener('beforeunload', function (e) {
                                 // e.preventDefault();
                                 // e.returnValue = 'Deleting AI Assistant';
-                                var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":this.assistantID}
+                                var sendParameters = {"question":this.UserID,"iteration":3,"fileDeletion":1, "assistantID":this.assistantID}
                                 jQuery.ajax({
                                     url: "https://genaiassistant-silly-bushbuck-ye.cfapps.us10.hana.ondemand.com",
                                     cache: false,
@@ -807,7 +807,7 @@
                             chatbot.botFinishTyping();
                         }
                         else {
-                            data = {"question":question,"iteration":3,"fileDeletion":chatbot.fileIdForDeletion, "assistantID":chatbot.assistantID}
+                            data = {"question":question,"iteration":4,"fileDeletion":chatbot.fileIdForDeletion, "assistantID":chatbot.assistantID}
                             // chatbot.noOfAICalls = chatbot.noOfAICalls + 1;
                             // data = { "question": question, "iteration": chatbot.noOfAICalls };
                             // const API_URL = "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_chatbot";
