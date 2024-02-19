@@ -748,6 +748,7 @@
                         var chatbot = this.getView().byId("botchat");
                         var question = oEvent.getParameter("text");
                         console.log(question);
+                        chatbot.botStartTyping()
                         // var data = JSON.stringify({
                         //     model : "gpt-3.5-turbo",
                         //     messages : [{ role : "user", content : question }]
