@@ -610,10 +610,10 @@
 
                     _onPost: function (oEvent) {
                         var this_ = this;
-                        this_.botStartTyping();
-                        // setTimeout(function () {
-                        //     this_.botStartTyping();
-                        // }, 1000);
+                        // this_.botStartTyping();
+                        setTimeout(function () {
+                            this_.botStartTyping();
+                        }, 1000);
 
                         var sText = oEvent.getSource().getValue();
                         this.addChatItem(sText, true);
@@ -748,7 +748,7 @@
                         var chatbot = this.getView().byId("botchat");
                         var question = oEvent.getParameter("text");
                         console.log(question);
-                        chatbot.botStartTyping()
+                        chatbot.botStartTyping();
                         // var data = JSON.stringify({
                         //     model : "gpt-3.5-turbo",
                         //     messages : [{ role : "user", content : question }]
