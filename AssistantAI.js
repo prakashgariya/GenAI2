@@ -632,7 +632,7 @@
                         // }
                                 // "url": "https://prakashgariya.github.io/GenAI2/AssistantAI.js",
                                 //        "url": "https://prakashgariya.github.io/GenAI2/GenAI.js",
-                        if ( this.assistantID.search('ass') == -1 ){
+                        if ( this.assistantID == 0 ){
                             var sendParameters = {"question":this.UserID,"iteration":1,"fileDeletion":1, "assistantID":"Dummy"}
                             var _this = this;
                                 jQuery.ajax({
