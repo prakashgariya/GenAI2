@@ -656,7 +656,7 @@
                                 window.addEventListener('beforeunload', function (e) {
                                     // e.preventDefault();
                                     // e.returnValue = 'Deleting AI Assistant';
-                                    var sendParameters = {"question":this.UserID,"iteration":3,"fileDeletion":1, "assistantID":this.assistantID}
+                                    var sendParameters = {"question":_this.UserID,"iteration":3,"fileDeletion":1, "assistantID":_this.assistantID}
                                     jQuery.ajax({
                                         url: "https://genaiassistant-silly-bushbuck-ye.cfapps.us10.hana.ondemand.com",
                                         cache: false,
