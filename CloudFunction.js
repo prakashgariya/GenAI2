@@ -233,8 +233,9 @@
             var i=0, txt = "",speed = 50, that = this;
             jQuery.ajax({
                 // url: "https://us-central1-us-gcp-ame-con-e74c9-sbx-1.cloudfunctions.net/GCF_Gen_Analytics_trigger",
-                url: "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/",
+                // url: "https://generateinsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/",
                 // url: "https://generateInsights-nice-gecko-rw.cfapps.us10.hana.ondemand.com/sacDashboard",
+		url: "https://genaicvssac-fearless-kob-mv.cfapps.us10.hana.ondemand.com/fetchQuery", // CVS URL
                 type: "GET",
                 crossDomain: true,
                 data: data,
